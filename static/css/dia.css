@@ -1,0 +1,165 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th.pos{
+  position: fixed;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  font-family: Arial;
+  font-size: 14px;
+}
+
+/*a:link    {color:green; background-color:transparent; text-decoration:none}
+a:visited {color:pink; background-color:transparent; text-decoration:none}
+a:hover   {color:red; background-color:transparent; text-decoration:underline}
+a:active  {color:yellow; background-color:transparent; text-decoration:underline}*/
+
+/*tr:nth-child(even){background-color: #f2f2f2}*/
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* #f4511e */
+
+.butn {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #4CAF50;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  font-family: Arial;
+  padding: 20px;
+  width: 200px;
+  height: 30px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.butn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.butn span:after {
+  content: ;
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.butn:hover span {
+  padding-right: 25px;
+}
+
+.butn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+input[type=text], input[type=password] {
+    width: 60%;
+    padding: 8px 6px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid red;
+    font-family: Arial;
+    font-size: 14px;
+}
+
+.container{
+  padding:0.01em 12px;
+  font-family: Arial;
+  font-size: 14px;
+}
+
+.card{
+  box-shadow:0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important}
+
+input[type=button], input[type=submit], input[type=reset] {
+    background-color: #4CAF50;
+    border-radius: 4px
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-family: Arial;
+    font-size: 14px;
+}
+
+.btn {
+  border-radius: 8px
+}
+
+select {
+    width: 16%;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    font-size: 14px;
+    font-family: Arial;
+}
+
+.w3-radio {
+  width:24px;
+  height:24px;
+  padding: 10px;
+  position:relative;
+  top:6px
+}
+
+.container{
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+/* Style the buttons that are used to open and close the accordion panel */
+button.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+button.accordion.active, button.accordion:hover {
+    background-color: #ddd;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    display: none;
+}
+
+/* The "show" class is added to the accordion panel when the user clicks on one of the buttons. This will show the panel content */
+div.panel.show {
+    display: block !important;
+}
+
+.w3-accordion-content{cursor:auto;display:none;position:relative;width:100%;margin:0;padding:0}
+.w3-accordion-content a{padding:6px 16px;display:block}
+.w3-accordion-content a:hover{background-color:#ccc}

@@ -1,0 +1,9 @@
+1. Finish the priveleges sections with all forms -- done
+2. Calculate the average score automatically -- done
+3. Check out for any leaking error that is unchecked. -- done-almost-all
+4. Deploy it by monday. -- done
+5. Find a way to produce the reports, both mid term and end of term. -- researching
+
+
+www.uq.edu.au/international
+0544347297

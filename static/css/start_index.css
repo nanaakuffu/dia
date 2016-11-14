@@ -1,0 +1,105 @@
+/* over all rules */
+*{
+  box-sizing:border-box;
+}
+html,body{
+  margin:0;
+  padding:0;
+  background:#ddd;
+  color:#333;
+  font-family:'Open Sans','Trebuchet MS','Arial',sans-serif;
+  font-size:14px;
+}
+.container{
+  width:1200px;
+  float:left;
+  position:relative;
+  left:50%;
+  margin-left:-600px;
+  background:#fff;
+  padding:10px;
+}
+a{
+  text-decoration:none;
+  color:#c33;
+}
+/* header and footer */
+header,footer,article,nav,section{
+  float:left;
+  padding:10px;
+}
+header,footer{
+  width:100%;
+}
+header,footer{
+  background-color:#333;
+  color:#fff;
+  text-align:right;
+  height:100px;
+}
+header{
+  font-size:1.8em;font-weight:bold;
+}
+header big{
+  line-height:130px;
+  vertical-align:bottom;
+}
+footer{
+  background-color:#999;
+  text-align:center;
+  height:40px;
+}
+footer a{
+  text-decoration:underline;
+  color:#fff;
+  font-weight:bold;
+}
+/* navigation on the left hand side */
+nav{
+  text-align:center;
+  width:24%;
+  margin-right:1%;
+  border:1px solid #ccc;
+  margin:5px;
+}
+nav a{
+  display:block;
+  width:100%;
+  background-color:#c33;
+  color:#fff;
+  height:30px;
+  margin-bottom:10px;
+  padding:10px;
+  border-radius:
+  3px;
+  line-height:10px;
+  vertical-align:middle;
+}
+nav a:hover,nav a:active{
+  background-color:#226;
+}
+/* <article> tag is our 'content area' */
+article{
+  width:75%;
+}
+h1{
+  padding:0;
+  margin:0 0 20px 0;
+}
+/* section */
+article section{
+  padding:0;
+}
+/* basic page column layout */
+.halves,.thirds{
+  width:49%;
+  float:left;
+  margin-right:2%;
+}
+.thirds{
+  width:32.66666%;
+  margin-right:1%;
+}
+.last{
+  margin-right:0;
+}
