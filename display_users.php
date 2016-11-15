@@ -11,7 +11,7 @@
 
     $con = $db->connect_to_db();
 
-    $fields = array('user_name', 'last_name', 'first_name', 'middle_name', 'user_type', 'added_by', 'status');
+    $fields = array('user_name', 'last_name', 'first_name', 'middle_name', 'added_by', 'status');
 
     base_header('Display Users');
     // $user = encrypt_data($_SESSION['user_name']);

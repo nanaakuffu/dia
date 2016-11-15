@@ -53,7 +53,7 @@
                 $db->close_connection($con);
                 header("Location: index.php");
               } else {
-                $message = "Your user account priveleges have not been set. Please contact the system administrator about this error.";
+                $message = "Your user account is inactive. Please contact the system administrator about this message.";
                 $_SESSION['message'] = $message;
                 include_once 'login_page.php';
                 exit();

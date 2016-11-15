@@ -5,6 +5,7 @@
     require_once("public_vars.php");
     require_once("public_functions.php");
 
+    // We use this to activate any user for this system....
     if (isset($_POST['add_access'])) {
         $error = "";
         foreach ($_POST as $key => $value) {
@@ -83,6 +84,22 @@
             exit();
           }
         }
+      } elseif (isset($_POST['delete_access'])) {
+        // echo "<pre>", var_dump($_POST), "</pre>";
+        // We use this to deactivate any user for this system
+        $db = new Database();
+        $con = $db->connect_to_db();
+
+        $delete_data = $db->delete_data($con, "priveleges", "user_name", $_POST['user_name']);
+        if ($delete_data) {
+          header("Location: display_users.php");
+        } else {
+          echo DELETE_ERROR;
+        }
+        // Open the web page
+        $db->close_connection($con);
+        // include_once("users_page.php");
+        exit();
       } else {
         include_once 'user_levels.php';
         exit();
