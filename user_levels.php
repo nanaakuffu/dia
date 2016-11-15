@@ -197,7 +197,9 @@
                 echo "<input type='hidden' name='level_up' value='up_lev'>
                       <div class='btn-group'>
                         <input class='btn btn-primary' type='submit' name='add_access'
-                        value='Update Access Level'>
+                        value='Update'>
+                        <input class='btn btn-primary' type='submit' name='delete_access'
+                        value='Delete'>
                         <a class='btn btn-primary' href='display_users.php'>Back</a>
                       </div>";
               }
