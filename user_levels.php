@@ -190,7 +190,7 @@
               if (!isset($_SESSION['update_access'])) {
                 echo "<div class='btn-group'>
                         <input class='btn btn-primary' type='submit' name='add_access'
-                        value='Add Access Level'>
+                        value='Add Access'>
                         <a class='btn btn-primary' href='display_users.php'>Back</a>
                       </div>";
               } else {
