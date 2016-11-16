@@ -139,6 +139,30 @@
       }
     }
 
+    function get_active_users($connection)
+    {
+      $active_users = [];
+      $active_result = mysqli_query($connection, "SELECT user_name FROM priveleges") or die("Couldn't perform query.");
+
+      $active_num = mysqli_num_rows($active_result);
+      if ( $active_num > 0 ) {
+        while ($active_record = mysqli_fetch_assoc($active_result)) {
+          $users[] = $active_record;
+        }
+        foreach ($users as $value) {
+          foreach ($value as $key => $user) {
+            $active_users[] = $user;
+          }
+        }
+
+        return $active_users;
+      } else {
+        return $active_users;
+      }
+
+
+    }
+
     function delete_data($connection, $table_name, $prim_key, $prim_value)
     {
       $query = "DELETE FROM $table_name WHERE $prim_key= "."'".$prim_value."'";
