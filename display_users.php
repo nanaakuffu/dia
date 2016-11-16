@@ -14,8 +14,11 @@
     $fields = array('user_name', 'last_name', 'first_name', 'middle_name', 'added_by', 'status');
 
     base_header('Display Users');
-    // $user = encrypt_data($_SESSION['user_name']);
     create_header();
+
+    $active_users = $db->get_active_users($con);
+
+    // echo "<pre>", var_dump($active_users), "</pre>";
 
     if (isset($_POST['submit'])) {
       $records = $db->search_data($con, "users", $fields, "last_name", $_POST['search'], 'last_name');
@@ -30,11 +33,15 @@
                 <tr class='w3-green'>";
                   $headers = "";
                   foreach ($fields as $key => $value) {
-                      if ($value != 'user_name') {
+                    if ($value != 'user_name') {
+                      if ($value == 'status') {
+                        $headers .= "<th> Online </th>";
+                      } else {
                         $headers .= "<th>".get_column_name($value)."</th>";
                       }
+                    }
                   }
-                  echo $headers;
+                  echo $headers .= "<th> Status </th>";
           echo "</tr>";
 
             if (sizeof($records) != 0) {
@@ -46,12 +53,14 @@
                     $up_3 = encrypt_data('2');
                     // <a href=users_update.php?str_1={$new_id}&up={$up_2}>
                     if ($rkey == 'status') {
-                      $online = ($value == 1) ? 'Online' : 'Offline' ;
+                      $online = ($value == 1) ? 'Yes' : 'No' ;
                       echo "<td ><a href=user_levels.php?level={$new_id}&upd={$up_3}>", $online, "</a></td>";
                     } else {
                       echo "<td ><a href=user_levels.php?level={$new_id}&upd={$up_3}>", $value, "</a></td>";
                     }
                   }
+                  $active = (is_element($active_users, $record['user_name'])) ? 'Active' : 'Inactive';
+                  echo "<td ><a href=user_levels.php?level={$new_id}&upd={$up_3}>", $active, "</a></td>";
                 }
                   echo "</tr>";
               }
