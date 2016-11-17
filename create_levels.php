@@ -32,6 +32,7 @@
           include_once 'user_levels.php';
           exit();
         } else {
+          // Open database connection
           $db = new Database();
           $con = $db->connect_to_db();
 
