@@ -59,10 +59,11 @@
                       echo "<td ><a href=user_levels.php?level={$new_id}&upd={$up_3}>", $value, "</a></td>";
                     }
                   }
-                  $active = (is_element($active_users, $record['user_name'])) ? 'Active' : 'Inactive';
-                  echo "<td ><a href=user_levels.php?level={$new_id}&upd={$up_3}>", $active, "</a></td>";
                 }
-                  echo "</tr>";
+                $active = (is_element($active_users, $record['user_name'])) ? 'Active' : 'Inactive';
+                echo "<td ><a href=user_levels.php?level={$new_id}&upd={$up_3}>", $active, "</a></td>";
+
+                echo "</tr>";
               }
             }
 
