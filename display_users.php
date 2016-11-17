@@ -1,9 +1,8 @@
 <?php
     session_start();
 
-    include_once("db_functions.php");
-    include_once("public_vars.php");
-    include_once("public_functions.php");
+    require_once("db_functions.php");
+    require_once("public_functions.php");
 
     login_check();
 
@@ -17,8 +16,6 @@
     create_header();
 
     $active_users = $db->get_active_users($con);
-
-    // echo "<pre>", var_dump($active_users), "</pre>";
 
     if (isset($_POST['submit'])) {
       $records = $db->search_data($con, "users", $fields, "last_name", $_POST['search'], 'last_name');
@@ -51,7 +48,7 @@
                   if ($rkey != 'user_name') {
                     $new_id = encrypt_data($record['user_name']);
                     $up_3 = encrypt_data('2');
-                    // <a href=users_update.php?str_1={$new_id}&up={$up_2}>
+
                     if ($rkey == 'status') {
                       $online = ($value == 1) ? 'Yes' : 'No' ;
                       echo "<td ><a href=user_levels.php?level={$new_id}&upd={$up_3}>", $online, "</a></td>";

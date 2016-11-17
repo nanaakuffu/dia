@@ -78,14 +78,14 @@
               echo SAVE_ERROR; // Saving was not possible
             }
 
-            // Open the web page
+            // Close the database connection
             $db->close_connection($con);
-            // include_once("users_page.php");
+
+            // Exit the system
             exit();
           }
         }
       } elseif (isset($_POST['delete_access'])) {
-        // echo "<pre>", var_dump($_POST), "</pre>";
         // We use this to deactivate any user for this system
         $db = new Database();
         $con = $db->connect_to_db();
@@ -96,9 +96,10 @@
         } else {
           echo DELETE_ERROR;
         }
-        // Open the web page
+        // Close the connection
         $db->close_connection($con);
-        // include_once("users_page.php");
+
+        // Exit the system
         exit();
       } else {
         include_once 'user_levels.php';
