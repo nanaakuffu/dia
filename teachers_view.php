@@ -1,9 +1,9 @@
 <?php
     session_start();
 
-    include_once("db_functions.php");
-    include_once("public_vars.php");
-    include_once("public_functions.php");
+    require_once("db_functions.php");
+    require_once("public_vars.php");
+    require_once("public_functions.php");
 
     login_check();
 
@@ -29,7 +29,7 @@
     $records = [];
     $department = $_SESSION['department'];
     $form_name = $_SESSION['form_name'];
-    // $subjects = explode(",", $_SESSION['']);
+
     // defailt values
     $year = (isset($_POST['submit'])) ? $_POST['academic_year'] : $year_array[0] ;
     $term = (isset($_POST['submit'])) ? $_POST['academic_term'] : $term_array[0] ;
@@ -57,8 +57,7 @@
       $class_name = get_class_name($_POST['class_name']);
       $sub_array = get_subject($_POST['class_name']);
     }
-    // echo preg_match("/teaches/i", "teaches_year_7");
-    // echo "<pre>", $class_name, var_dump($sub_array), "</pre>";
+    
 
     echo "<div class='container'>
             <div class='table-responsive'>

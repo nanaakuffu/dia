@@ -1,11 +1,11 @@
 <?php
     session_start();
 
-    include_once("db_functions.php");
-    include_once("public_vars.php");
-    include_once("public_functions.php");
+    require_once("db_functions.php");
+    require_once("public_vars.php");
+    require_once("public_functions.php");
 
-    // login_check();
+    login_check();
 
     $db = new Database();
 

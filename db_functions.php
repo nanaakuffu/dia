@@ -15,7 +15,7 @@
     function __construct()
     {
       // Loading data details and initializng class
-      include_once("public_vars.php");
+      require_once("public_vars.php");
       $this->host = DB_HOST;
       $this->account = DB_USER_NAME;
       $this->password = DB_PASSWORD;
@@ -327,7 +327,6 @@
 
     function get_average_score($connection, $table_name, $criteria)
     {
-      // $field_list = implode(",", $fields);
       $query = "SELECT AVG(total_score) AS avg_score FROM $table_name WHERE ";
 
       foreach($criteria as $key => $value) {

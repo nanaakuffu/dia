@@ -19,7 +19,7 @@
     $records = mysqli_num_rows($result);
 
     $rows = [];
-    // echo preg_match("/Level/i", $_SESSION['form_name']);
+
     echo "<br /><div class='container'>
           <div class='row'>
           <div class='col-sm-3'>

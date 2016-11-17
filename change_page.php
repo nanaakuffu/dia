@@ -7,7 +7,6 @@
   login_check();
 
   base_header('Change Password');
-  // $user = encrypt_data($_SESSION['user_name']);
   create_header();
 
   echo "<br /><div class='w3-container row'>

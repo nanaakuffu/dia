@@ -17,9 +17,6 @@
       $class_name = get_class_name($_POST['class_name']);
       $sub_array = get_subject($_POST['class_name']);
 
-      // echo "<pre>", var_dump($sub_array), "</pre>", $class_name, $_POST['class_name'];
-      // echo preg_match("/{$_POST['class_name']}/i", $class_name);
-
       foreach($_POST as $field=>$value) {
          /* Checking for empty data */
          if (!empty($_POST[$field])) {
@@ -118,7 +115,7 @@
            }
          }
        }
-
+      //  Extracting and displaying all the errors collected
        if ( @sizeof($errors) > 0) {
           $error_message = "";
           foreach($errors as $field => $value) {
@@ -150,7 +147,7 @@
           if (isset($_SESSION['update_score'])) {
             // Update the data
             $save_data = $db->update_data($con, $_POST, "exams", "exam_id", $_POST['exam_id']);
-			
+
             // Update the average score for the new entered data
             $avg = $db->get_average_score($con, "exams", $avg_criteria);
             $average = (float)$avg[0]['avg_score'];

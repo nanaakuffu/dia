@@ -492,7 +492,6 @@
 
     function class_department($class_name)
     {
-      // $primary_dep = array('play group', );
       $lower_secondary = array('Year 7', 'Year 8', 'Year 9');
       $upper_secondary = array('IGCSE 1', 'IGCSE 2', 'AS Level', 'A Level');
 

@@ -1,10 +1,9 @@
 <?php
     session_start();
 
-    include_once("db_functions.php");
-    include_once("public_functions.php");
-    include("public_vars.php");
-    include("form.php");
+    require_once("db_functions.php");
+    require_once("public_functions.php");
+    require_once("public_vars.php");
 
     login_check();
 
@@ -101,6 +100,4 @@
         }
       }
     }
-  ?>
-</body>
-</html>
+?>

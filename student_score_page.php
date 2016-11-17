@@ -51,7 +51,6 @@
   $total = (isset($_POST['add_score'])) ? $_POST['total_score'] : "" ;
   $grade = (isset($_POST['add_score'])) ? $_POST['grade'] : "" ;
   $remarks = (isset($_POST['add_score'])) ? $_POST['remark'] : "" ;
-  // $average = (isset($_POST['add_score'])) ? $_POST['average_score'] : "" ;
 
   echo "<br /><div class='container'>";
           if (isset($_SESSION['message'])) {

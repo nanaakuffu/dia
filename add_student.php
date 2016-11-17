@@ -2,9 +2,9 @@
   /* Script name: student_page */
   session_start();
 
-  include_once "db_functions.php";
-  include_once "public_vars.php";
-  include_once "public_functions.php";
+  require_once "db_functions.php";
+  require_once "public_vars.php";
+  require_once "public_functions.php";
 
   if(!isset($_POST['submit'])) {
     include_once "student_page.php";
@@ -63,7 +63,7 @@
           }
          }
        }
-
+      //  Extracting and sisplaying all the errors collected
        if ( @sizeof($errors) > 0) {
           $error_message = "";
           foreach($errors as $field => $value) {
@@ -96,7 +96,7 @@
           /* Removes unwanted field names that came from the form */
           $_POST = filter_array($_POST, $field_names_array);
 
-          // Actually save the date
+          // Actually save the data
           $save_data = $db->add_new($con, $_POST, "students");
 
           if ($save_data) {

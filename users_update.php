@@ -4,9 +4,8 @@
     $_SESSION['update_user'] = TRUE;
   }
 
-  include_once 'public_functions.php';
-  include_once 'db_functions.php';
-//  include_once 'form.php';
+  require_once 'public_functions.php';
+  require_once 'db_functions.php';
 
   login_check();
 
@@ -91,7 +90,7 @@
 
       unset($_POST);
       unset($_SESSION['user_id']);
-//      $db->close_connection($con);
+      $db->close_connection($con);
 
       create_footer();
 ?>

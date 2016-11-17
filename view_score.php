@@ -1,9 +1,9 @@
 <?php
     session_start();
 
-    include_once("db_functions.php");
-    include_once("public_vars.php");
-    include_once("public_functions.php");
+    require_once("db_functions.php");
+    require_once("public_vars.php");
+    require_once("public_functions.php");
 
     login_check();
 
@@ -57,7 +57,6 @@
     }
 
     echo "</table></div>";
-    // $_SESSION['update_score'] = TRUE;
 
     create_footer();
 ?>
