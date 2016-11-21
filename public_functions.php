@@ -412,6 +412,8 @@
 
     function comp_score_grade($score)
     {
+      $score = floatval($score);
+
       switch ($score) {
         case 90 <= $score and $score <= 100:
           $grade = 'A';
