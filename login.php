@@ -18,7 +18,7 @@
 
         if ($num > 0) {   // user name was found
           $password = encrypt_data($_POST['user_pass_word']);
-          $pass_sql = "SELECT user_name, user_type, last_name, first_name, middle_name, status FROM users WHERE user_name="."'".$_POST['user_name']."'". " AND user_password=". "'".$password."'";
+          $pass_sql = "SELECT user_name, user_type, last_name, first_name, middle_name, user_initials, status FROM users WHERE user_name="."'".$_POST['user_name']."'". " AND user_password=". "'".$password."'";
           $pass_result = mysqli_query($con, $pass_sql) or die("Couldn't execute query 2.");
           $num_available = mysqli_num_rows($pass_result);
 
@@ -35,6 +35,7 @@
                 $_SESSION['auth'] = 'yes';
                 $user_name = $_POST['user_name'];
                 $_SESSION['full_name'] = $full_name;
+                $_SESSION['initials'] = $rows[0]['user_initials'];
 
                 $today_date = date('y-m-d');
                 $today_time = date('h:i:s');
