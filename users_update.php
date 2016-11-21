@@ -31,6 +31,7 @@
   $first_name = (isset($_POST['login'])) ? $_POST['first_name'] : '' ;
   $middle_name = (isset($_POST['login'])) ? $_POST['middle_name'] : '' ;
   $last_name = (isset($_POST['login'])) ? $_POST['last_name'] : '' ;
+  $initials = (isset($_POST['login'])) ? $_POST['user_initials'] : '' ;
 
   echo "<br /><div class='container'>
           <div class='row'>
@@ -74,6 +75,12 @@
                     <label class='w3-validate' for='last_name'> Last Name: </label>
                     <input class='form-control' type='text' name='last_name' value='{$last_name}'
                              id='last_name' required><br />
+                  </div>
+
+                  <div class='form-group'>
+                    <label class='w3-validate' for='initials'> Initials: </label>
+                    <input class='form-control' type='text' name='user_initials' value='{$initials}'
+                             id='initials' required><br />
                   </div>
 
                   <input type='hidden' name='user_up' value='up_d'>
