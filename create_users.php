@@ -11,13 +11,13 @@
             /* Check for wrong data */
             $value = trim($value);
             if (preg_match("/first/i", $key)) {
-              if (!ereg("^[A-Za-z0-9].*", $value)) {
+              if (!ereg("^[A-Za-z].*", $value)) {
                 $error .= "<b>$value</b> is not a valid first name.,";
               }
             }
 
             if (preg_match("/last/i", $key)) {
-              if (!ereg("^[A-Za-z0-9].*", $value)) {
+              if (!ereg("^[A-Za-z].*", $value)) {
                 $error .= "<b>$value</b> is not a valid last name.,";
               }
             }
@@ -31,6 +31,12 @@
             if (preg_match("/mail/i", $key)) {
               if (!ereg("^.+@.+\\..+$", $value)) {
                 $error .="<b>$value</b> is not a valid email address.";
+              }
+            }
+
+            if (preg_match("/initials/i", $key)) {
+              if (!ereg("^[A-Z].*", $value)) {
+                $error .= "<b>$value</b> is not a valid initial.,";
               }
             }
           }
@@ -73,6 +79,9 @@
               $save_data = $db->update_data($con, $_POST, "users", "user_name", $_POST['user_name']);
               $_SESSION['full_name'] = $_POST['last_name'].", ".$_POST['first_name']." ".$_POST['middle_name'];
               $db->change_full_name($con, $_SESSION['full_name'], $_SESSION['user_name']);
+
+              // Reset initials
+              $_SESSION['initials'] = $_POST['user_initials'];
             } else {
               /* Encrypt the password data */
               $_POST['user_password'] = encrypt_data($_POST['user_password']);
