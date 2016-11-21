@@ -1,5 +1,4 @@
 <?php
-  // session_start();
 
   include_once 'public_functions.php';
   include_once 'form.php';

@@ -154,7 +154,6 @@
             $active_users[] = $user;
           }
         }
-
         return $active_users;
       } else {
         return $active_users;
@@ -273,7 +272,8 @@
       }
     }
 
-    function data_exists($connection, $table_name, $fields, $criteria) {
+    function data_exists($connection, $table_name, $fields, $criteria)
+    {
 
         $field_list = implode(",", $fields);
         $query = "SELECT $field_list FROM $table_name WHERE ";
