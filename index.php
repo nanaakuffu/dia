@@ -23,7 +23,6 @@
     echo "<br /><div class='container'>
           <div class='row'>
           <div class='col-sm-3'>
-            <br />
           </div>
           <div class='col-sm-6'>
             <div class='panel panel-default'>
