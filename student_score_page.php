@@ -127,8 +127,7 @@
                   <div class='form-group'><label for='remark'>Remark : </label><br />
                       <input class='form-control' type='text' id='remark' name='remark' value='{$remarks}'
                            readonly></div>
-                  <div class='form-group'><label class='w3-validate' for='teacher_initials'>Teacher Initials : </label><input class='form-control' type='text' name='teacher_initials' value='{$initials}'
-                        id='teacher_initials' required></div>";
+                  <input type='hidden' name='teacher_initials' value='{$initials}'>";
                   if (!isset($_SESSION['update_score'])) {
                     echo "<input class='btn btn-primary w3-round w3-padding-medium' type='submit' name='add_score'
                           value='Add Scores'>";
