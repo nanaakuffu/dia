@@ -86,15 +86,6 @@
              if (!ereg("^[A-F].*", $value )) {
                $errors[] = "$value is not a valid grade.";
              }
-           }
-
-           if ( preg_match("/teacher/i", $field)) {
-             if (!ereg("^[A-Z].*", $value )) {
-               $errors[] = "$value is not a valid initial.";
-             }
-           }
-
-           if ($field == 'grade') {
              if ($_POST[$field] != comp_score_grade($_POST['total_score'])) {
                $errors[] = "Total score and grade do not match.";
              }
@@ -135,6 +126,9 @@
 
           // This is an array that holds the keys of the wanted field names
           $field_names_array = $db->get_field_names($con, "exams");
+
+          // Do some minor data additions: Add teachers signature
+          $_POST['teacher_initials'] = $_SESSION['initials'];
 
           /* Removes unwanted field names that came from the form */
           $_POST = filter_array($_POST, $field_names_array);
