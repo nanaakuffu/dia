@@ -10,7 +10,8 @@
 
   create_header();
 
-  echo "<br /><div class='container row'>
+  echo "<br /><div class='w3-container'>
+            <div class='row'>
             <div class='col-sm-3'>
                 <br />
             </div>
@@ -48,7 +49,7 @@
             <div class='col-sm-3'>
                 <br />
             </div>
-        </div><hr>";
+        </div></div>";
 
     create_footer();
 ?>
