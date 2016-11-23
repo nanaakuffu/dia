@@ -502,13 +502,4 @@
       return $value;
     }
 
-    function export_to_pdf($data_array, $heading_pix)
-    {
-      // Under construction
-    }
-
-    function teaches_class()
-    {
-      # code...
-    }
 ?>

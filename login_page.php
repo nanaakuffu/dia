@@ -1,8 +1,6 @@
 <?php
 
     require_once 'public_functions.php';
-    require_once 'db_functions.php';
-    require_once 'form.php';
 
     base_header('Login Form');
 
