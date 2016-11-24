@@ -1,5 +1,6 @@
 <?php
-    session_start();
+    // session_start();
+
     require_once 'public_functions.php';
     require_once 'db_functions.php';
 
@@ -34,14 +35,14 @@
                   <input type='text' class='form-control' id='security_answer' name='security_answer'>
               </div>
               <button class='btn btn-primary w3-round w3-padding-medium' type='submit' name='reset' form='reset'
-                      value='reset'>Reset Login <span class='glyphicon glyphicon-refresh'></span></button>
+                      value='reset'>Reset Login <i class='fa fa-fw fa-refresh'></i></button>
             </form>
-          </div>
         </div>
+      </div>
         <?php
           if (isset($_SESSION['message'])) {
-            echo "<div class='panel panel-default w3-green'>
-                      <div class='panel-body w3-text-white'>", $_SESSION['message'], "</div>
+            echo "<div class='panel panel-default'>
+                      <div class='panel-body'>", $_SESSION['message'], "</div>
                   </div>";
             unset($_SESSION['message']);
           }
