@@ -106,6 +106,9 @@
                             <li>
                                 <a href='change_password.php'> Change Password </a>
                             </li>
+                            <li>
+                                <a href='reset_security.php'> Add Login Security </a>
+                            </li>
                         </ul>
                     </li>
                     <li>
