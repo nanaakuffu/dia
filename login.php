@@ -54,15 +54,14 @@
                 $db->close_connection($con);
                 header("Location: index.php");
               } else {
-                $message = "Your user account is inactive. Please contact the system administrator about this message.";
+                $message = "<i class='fa fa-fw fa-close'></i> Your user account is inactive. Please contact the system administrator about this message.";
                 $_SESSION['message'] = $message;
                 include_once 'login_page.php';
                 exit();
               }
             } else {
               $db->close_connection($con);
-              $message = "User is already logged in.<br>
-                          If you are sure this is you, please goto <a href='reset_login.php'> reset login </a>
+              $message = "<i class='fa fa-fw fa-close'></i> User is already logged in. If you are sure this is you, please goto <a href='reset_login.php'> reset login </a>
                           to reset your login status.";
               $_SESSION['message'] = $message;
               include_once 'login_page.php';
@@ -70,14 +69,14 @@
             }
           } else {
             $db->close_connection($con);
-            $message = "Password does not match your user name!";
+            $message = "<i class='fa fa-fw fa-close'></i> Password does not match your user name!";
             $_SESSION['message'] = $message;
             include_once 'login_page.php';
             exit();
           }
         } else {
           $db->close_connection($con);
-          $message = "Password does not match your user name!";
+          $message = "<i class='fa fa-fw fa-close'></i> Password does not match your user name!";
           $_SESSION['message'] = $message;
           include_once 'login_page.php';
           exit();

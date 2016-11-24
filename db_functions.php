@@ -160,28 +160,6 @@
       }
     }
 
-    function get_security_users($connection, $user_name)
-    {
-      $sec_users = [];
-      $sec_result = mysqli_query($connection, "SELECT * FROM login_check WHERE user_name="."'".$user_name."'")
-          or die("Couldn't perform query.");
-
-      $sec_num = mysqli_num_rows($sec_result);
-      if ( $sec_num > 0 ) {
-        while ($sec_record = mysqli_fetch_assoc($active_result)) {
-          $users[] = $sec_record;
-        }
-        foreach ($users as $value) {
-          foreach ($value as $key => $user) {
-            $sec_users[$key] = $user;
-          }
-        }
-        return $sec_users;
-      } else {
-        return $sec_users;
-      }
-    }
-
     function delete_data($connection, $table_name, $prim_key, $prim_value)
     {
       $query = "DELETE FROM $table_name WHERE $prim_key= "."'".$prim_value."'";

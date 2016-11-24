@@ -6,7 +6,6 @@
 
     if (isset($_POST['reset'])) {
         // Connect to database and get user access levels as he/she logs in
-        var_dump($_POST);
         $db = new Database();
         $con = $db->connect_to_db();
 
@@ -36,7 +35,7 @@
 
             } else {
               $db->close_connection($con);
-              $message = "<i class='fa fa-fw fa-close'></i> Your answer was not verified. Please
+              $message = "<i class='fa fa-fw fa-close'></i> Your answer and question does not match. Please
                         try again.";
               $_SESSION['message'] = $message;
               include_once 'reset_login.php';

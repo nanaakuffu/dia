@@ -9,6 +9,7 @@
     $db = new Database();
     $con = $db->connect_to_db();
 
+    // Create a distinct and sort array from the database
     $question_array = $db->create_data_array($con, 'login_check', 'security_question', TRUE, TRUE);
 ?>
 

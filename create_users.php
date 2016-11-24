@@ -12,31 +12,31 @@
             $value = trim($value);
             if (preg_match("/first/i", $key)) {
               if (!ereg("^[A-Za-z].*", $value)) {
-                $error .= "<b>$value</b> is not a valid first name.,";
+                $error .= "<i class='fa fa-fw fa-close'></i> <b>$value</b> is not a valid first name.,";
               }
             }
 
             if (preg_match("/last/i", $key)) {
               if (!ereg("^[A-Za-z].*", $value)) {
-                $error .= "<b>$value</b> is not a valid last name.,";
+                $error .= "<i class='fa fa-fw fa-close'></i> <b>$value</b> is not a valid last name.,";
               }
             }
 
             if (preg_match("/pass/i", $key)) {
               if (strlen($value) < 8 ) {
-                $error .= "Password must be 8 characters or more.,";
+                $error .= "<i class='fa fa-fw fa-close'></i> Password must be 8 characters or more.,";
               }
             }
 
             if (preg_match("/mail/i", $key)) {
               if (!ereg("^.+@.+\\..+$", $value)) {
-                $error .="<b>$value</b> is not a valid email address.";
+                $error .="<i class='fa fa-fw fa-close'></i> <b>$value</b> is not a valid email address.";
               }
             }
 
             if (preg_match("/initials/i", $key)) {
               if (!ereg("^[A-Z].*", $value)) {
-                $error .= "<b>$value</b> is not a valid initial.,";
+                $error .= " <i class='fa fa-fw fa-close'></i> <b>$value</b> is not a valid initial.,";
               }
             }
           }

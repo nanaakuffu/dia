@@ -28,8 +28,8 @@
                     </div>
                   </div>";
                   if (isset($_SESSION['message'])) {
-                    echo "<div class='panel panel-default w3-green'>
-                              <div class='panel-body w3-text-white'>", $_SESSION['message'], "</div>
+                    echo "<div class='panel panel-default'>
+                              <div class='panel-body'>", $_SESSION['message'], "</div>
                           </div>";
                     unset($_SESSION['message']);
                   }
