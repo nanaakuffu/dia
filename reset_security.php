@@ -5,7 +5,7 @@
     require_once("public_vars.php");
     require_once("public_functions.php");
 
-    if (isset($_POST['reset'])) {
+    if (isset($_POST['reset_sec'])) {
 
         $error = "";
         foreach ($_POST as $key => $value) {

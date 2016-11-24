@@ -61,7 +61,7 @@
               }
             } else {
               $db->close_connection($con);
-              $message = "<i class='fa fa-fw fa-close'></i> User is already logged in. If you are sure this is you, please goto <a href='reset_login.php'> reset login </a>
+              $message = "<i class='fa fa-fw fa-close'></i> User is already logged in. If you are sure this is you, please goto <a href='reset.php'> reset login </a>
                           to reset your login status.";
               $_SESSION['message'] = $message;
               include_once 'login_page.php';
