@@ -6,6 +6,7 @@
 
     if (isset($_POST['reset'])) {
         // Connect to database and get user access levels as he/she logs in
+        var_dump($_POST);
         $db = new Database();
         $con = $db->connect_to_db();
 
@@ -21,26 +22,30 @@
           }
 
           if ($_POST['security_question'] == $rows[0]['security_question']) {
-            if ($_POST['answer'] == $rows[0]['answer']) {
+            if ($_POST['answer'] == decrypt_data($rows[0]['answer'])) {
+
+              $user_sql = "UPDATE users SET status='0' WHERE user_name ="."'".$_POST['user_name']."'";
+              $result = mysqli_query($con, $user_sql) or die("Couldn't execute query.");
+
               $db->close_connection($con);
-              $message = "<i class='fa fa-check-square-o'></i> Your answer has been verified.<br />
-                          Please click <a href='login_page.php'> here </a> to login.";
+              $message = "<i class='fa fa-check-square-o'></i> Your answer has been verified. Please
+                        click <a href='login_page.php'> here </a> to login.";
               $_SESSION['message'] = $message;
               include_once 'reset_login.php';
               exit();
 
             } else {
               $db->close_connection($con);
-              $message = "<i class='fa fa-fw fa-close'></i> Your answer was not verified.<br />
-                          Please try again here.";
+              $message = "<i class='fa fa-fw fa-close'></i> Your answer was not verified. Please
+                        try again.";
               $_SESSION['message'] = $message;
               include_once 'reset_login.php';
               exit();
             }
           } else {
             $db->close_connection($con);
-            $message = "<i class='fa fa-fw fa-close'></i> Your question does not match your user name.<br />
-                        Please try again here.";
+            $message = "<i class='fa fa-fw fa-close'></i> Your question does not match your user name.
+                        Please try again.";
             $_SESSION['message'] = $message;
             include_once 'reset_login.php';
             exit();

@@ -25,14 +25,16 @@
             <form action='reset.php' id='reset' method='POST'>
               <div class='form-group'>
                   <label for='user_name'>Username:</label>
-                  <input type='text' class='form-control' id='user_name' name='user_name' placeholder='Enter username' readonly>
+                  <input type='text' class='form-control' id='user_name' name='user_name'
+                    placeholder='Enter username' required>
               </div>
-              <div class='form-group'><label for='security_question'>Security Question:</label><br />
+              <div class='form-group'><label for='security_question'>Select Security Question:</label><br />
               <?php select_data($question_array, 'security_question', '', 100, TRUE) ?>
               </div>
               <div class='form-group'>
                   <label for='security_answer'>Answer:</label>
-                  <input type='text' class='form-control' id='security_answer' name='security_answer'>
+                  <input type='text' class='form-control' id='answer' name='answer'
+                    placeholder='Answer' required>
               </div>
               <button class='btn btn-primary w3-round w3-padding-medium' type='submit' name='reset' form='reset'
                       value='reset'>Reset Login <i class='fa fa-fw fa-refresh'></i></button>

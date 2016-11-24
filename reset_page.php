@@ -17,7 +17,7 @@
     $users = $db->view_data($con, "login_check", "user_name", $user_name);
 
     $question = (sizeof($users) > 0) ? $users['security_question'] : '' ;
-    $answer = (sizeof($users) > 0) ? $users['answer'] : '' ;
+    $answer = (sizeof($users) > 0) ? decrypt_data($users['answer']) : '' ;
     $button = (sizeof($users) > 0) ? 'Update Security' : 'Add Security' ;
     $_SESSION['update_sec'] = (sizeof($users) > 0) ? TRUE : FALSE ;
 
@@ -44,15 +44,15 @@
               <div class='form-group'>
                 <label for='security_question'>Security Question:</label><br />
                 <input type='text' class='form-control' id='question' name='security_question'
-                placeholder='Please type your security question' value='<?php echo $question; ?>'>
+                placeholder='Please type your security question' value='<?php echo $question; ?>' required>
               </div>
               <div class='form-group'>
                   <label for='answer'>Answer:</label>
                   <input type='text' class='form-control' id='answer' name='answer'
-                  placeholder='Enter security answer' value='<?php echo $answer; ?>'>
+                  placeholder='Enter security answer' value='<?php echo $answer; ?>' required>
               </div>
-              <button class='btn btn-primary w3-round w3-padding-medium' type='submit' name='reset' form='reset'
-                      value='reset'> <?php echo $button; ?> <i class='fa fa-fw fa-refresh'></i></button>
+              <button class='btn btn-primary w3-round w3-padding-medium' type='submit' name='reset'
+                  form='reset' value='reset'> <?php echo $button; ?> <i class='fa fa-fw fa-refresh'></i></button>
             </form>
         </div>
       </div>

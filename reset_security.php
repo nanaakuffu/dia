@@ -5,7 +5,8 @@
     require_once("public_vars.php");
     require_once("public_functions.php");
 
-    if (isset($_POST['reset'])) {    
+    if (isset($_POST['reset'])) {
+
         $error = "";
         foreach ($_POST as $key => $value) {
           /* Check for wrong data */
@@ -42,6 +43,7 @@
           exit();
 
         } else {
+
           $db = new Database();
           $con = $db->connect_to_db();
           $SQL = "SELECT * FROM login_check WHERE user_name = "."'".$_POST['user_name']."'";
@@ -57,8 +59,9 @@
 
             /* Removes unwanted field names that came from the form */
             $_POST = filter_array($_POST, $field_names_array);
+            $_POST['answer'] = encrypt_data($_POST['answer']);
 
-            if (isset($_SESSION['update_sec'])) {
+            if ($_SESSION['update_sec']) {
               $save_data = $db->update_data($con, $_POST, "login_check", "user_name", $_POST['user_name']);
             } else {
               $save_data = $db->add_new($con, $_POST, "login_check");
