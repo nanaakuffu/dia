@@ -23,7 +23,7 @@
           $errors = explode(",", $error);
           $message = "";
           foreach ($errors as $key => $value) {
-            $message .= $value." Please try again.<br>";
+            $message .= "<li><i class='fa-li fa fa-check-square'></i>".$value." Please try again </li>";
           }
           $_SESSION['message'] = $message;
           if (isset($_POST['level_up'])) {

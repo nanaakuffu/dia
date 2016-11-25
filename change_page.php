@@ -16,7 +16,7 @@
                if (isset($_SESSION['message'])) {
                 echo "<div class='panel panel-default'>
                         <div class='panel-heading'>Input Error(s)</div>
-                        <div class='panel-body'>", $_SESSION['message'], "</div>
+                        <div class='panel-body'><ul class='fa-ul'>", $_SESSION['message'], "</ul></div>
                       </div>";
                 unset($_SESSION['message']);
               }

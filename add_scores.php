@@ -110,7 +110,7 @@
        if ( @sizeof($errors) > 0) {
           $error_message = "";
           foreach($errors as $field => $value) {
-            $error_message .= "<li>".$value." Please try again </li>";
+            $error_message .= "<li><i class='fa-li fa fa-check-square'></i>".$value." Please try again </li>";
           }
           $_SESSION['message'] = $error_message;
           if (isset($_SESSION['update_score'])) {

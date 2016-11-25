@@ -36,7 +36,7 @@ if(!isset($_POST['submit'])) {
     if ( @sizeof($errors) > 0) {
       $error_message = "";
       foreach($errors as $field => $value) {
-        $error_message .= $value." Please try again <br>";
+        $error_message .= "<li><i class='fa-li fa fa-check-square'></i>".$value." Please try again </li>";
       }
       $_SESSION['message'] = $error_message;
       include_once "change_page.php";

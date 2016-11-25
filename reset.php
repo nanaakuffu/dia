@@ -15,11 +15,9 @@
         $num = mysqli_num_rows($result);
 
         if ($num > 0) {   // user name was found
-
           while($record = mysqli_fetch_assoc($result)){
             $rows[] = $record;
           }
-
           if ($_POST['security_question'] == $rows[0]['security_question']) {
             if ($_POST['answer'] == decrypt_data($rows[0]['answer'])) {
 

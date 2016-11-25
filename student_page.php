@@ -15,7 +15,7 @@
   $class_name = (isset($_POST['submit'])) ? $_POST['class_name'] : $class_array[0] ;
   $house_name = (isset($_POST['submit'])) ? $_POST['house_name'] : $house_array[0] ;
 
-  echo "<br/><div class='w3-container'>
+  echo "<br/><div class='container'>
             <div class='row'>
               <div class='col-sm-3'>
                 <br />
@@ -24,7 +24,7 @@
               if (isset($_SESSION['message'])) {
                 echo "<div class='panel panel-default'>
                         <div class='panel-heading'>Input Error(s)</div>
-                        <div class='panel-body'><ol type='1' start='1'>", $_SESSION['message'], "</ol></div>
+                        <div class='panel-body'><ul class='fa-ul'>", $_SESSION['message'], "</ul></div>
                       </div>";
                 unset($_SESSION['message']);
               }

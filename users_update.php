@@ -42,7 +42,7 @@
               if (isset($_SESSION['message'])) {
                 echo "<div class='panel panel-default'>
                         <div class='panel-heading'>Input Error(s)</div>
-                        <div class='panel-body'>", $_SESSION['message'], "</div>
+                        <div class='panel-body'><ul class='fa-ul'>", $_SESSION['message'], "</ul></div>
                       </div>";
                 unset($_SESSION['message']);
               }
@@ -56,36 +56,30 @@
                   <div class='form-group'>
                     <label class='w3-validate' for='e_mail'> Email Address: </label>
                     <input class='form-control' type='email' name='e_mail' value='{$e_mail}'
-                            id='e_mail' required><br />
+                            id='e_mail' required>
                   </div>
-
                   <div class='form-group'>
                     <label class='w3-validate' for='first_name'> First Name: </label>
                     <input class='form-control' type='text' name='first_name' value='{$first_name}'
-                             id='first_name' required><br />
+                             id='first_name' required>
                   </div>
-
                   <div class='form-group'>
                     <label class='w3-validate' for='middle_name'>Middle Name: </label>
                     <input class='form-control' type='text' name='middle_name' value='{$middle_name}'
-                             id='middle_name'><br />
+                             id='middle_name'>
                   </div>
-
                   <div class='form-group'>
                     <label class='w3-validate' for='last_name'> Last Name: </label>
                     <input class='form-control' type='text' name='last_name' value='{$last_name}'
-                             id='last_name' required><br />
+                             id='last_name' required>
                   </div>
-
                   <div class='form-group'>
                     <label class='w3-validate' for='initials'> Initials: </label>
                     <input class='form-control' type='text' name='user_initials' value='{$initials}'
-                             id='initials' required><br />
+                             id='initials' required>
                   </div>
-
                   <input type='hidden' name='user_up' value='up_d'>
                   <input class='btn btn-primary w3-padding-medium' type='submit' name='login' value='Update'>
-
               </form>
               </div>
             </div>

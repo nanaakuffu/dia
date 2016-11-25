@@ -34,7 +34,7 @@
     function search_bar($search_page)
     {
       echo "<form class='form-inline' action='$search_page' method='POST' id='bsearch' style='margin-top: 15px'>
-                <div class='input-group'>
+                <div class='input-group margin-bottom-sm'>
                   <input class='form-control' type='text' id='search' name='search'
                       placeholder='Search Student...'>
                   <div class='input-group-btn'>
@@ -72,42 +72,42 @@
                         <a href='#' class='dropdown-toggle' data-toggle='dropdown'> Student <b class='glyphicon glyphicon-menu-down'></b></a>
                         <ul class='dropdown-menu'>";
                             if ($_SESSION['is_admin'] == 1 or $_SESSION['is_head'] == 1 or $_SESSION['is_form_teacher'] == 1) {
-                                echo "<li><a href='add_student.php'> Add New Student </a></li>";
-                                echo "<li><a href='display_students.php'> View and Edit Students </a></li>";
+                                echo "<li><a href='add_student.php'><i class='fa fa-fw fa-group'></i> Add New Student </a></li>";
+                                echo "<li><a href='display_students.php'><i class='fa fa-fw fa-edit'></i> View and Edit Students </a></li>";
                                 echo "<li class='divider'></li>";
                             }
                       echo "<li>
-                                <a href='add_scores.php'> Add Student Score </a>
+                                <a href='add_scores.php'><i class='fa fa-fw fa-plus'></i> Add Student Score </a>
                             </li>
                             <li>
-                                <a href='teachers_view.php'> Student Scores By Class </a>
+                                <a href='teachers_view.php'><i class='fa fa-fw fa-desktop'></i> Subject Teacher's View </a>
                             </li>";
                             if ( $_SESSION['is_admin'] == 1 or $_SESSION['is_head'] == 1 or $_SESSION['is_form_teacher'] == 1 ) {
-                              echo "<li><a href='view_class_scores.php'> View Student Scores </a></li>";
+                              echo "<li><a href='view_class_scores.php'><i class='fa fa-fw fa-desktop'></i> View Student Scores </a></li>";
                             }
                   echo "</ul>
                     </li>
                     <li class='dropdown'>
-                        <a href='#' class='dropdown-toggle' data-toggle='dropdown'> Settings <b class='glyphicon glyphicon-menu-down'></b></a>
+                        <a href='#' class='dropdown-toggle' data-toggle='dropdown'><i class='fa fa-fw fa-gears'></i> Settings <b class='glyphicon glyphicon-menu-down'></b></a>
                         <ul class='dropdown-menu'>
                             <li>";
                             if ($_SESSION['is_admin'] == 1 or $_SESSION['is_head'] == 1) {
-                                echo "<a href='create_users.php'> Add New User </a>";
+                                echo "<a href='create_users.php'><i class='fa fa-fw fa-user'></i> Add New User </a>";
                             }
                       echo "</li>
                             <li>";
                             if ($_SESSION['is_admin'] == 1) {
-                                echo "<a href='display_users.php'> View and Edit Users </a>";
+                                echo "<a href='display_users.php'><i class='fa fa-fw fa-edit'></i> View and Edit Users </a>";
                             }
                       echo "</li>
                             <li>
-                                <a href='settings.php'>Add Subject</a>
+                                <a href='settings.php'><i class='fa fa-fw fa-plus-square'></i> Add Subject</a>
                             </li>
                             <li>
-                                <a href='change_password.php'> Change Password </a>
+                                <a href='change_password.php'><i class='fa fa-fw fa-key'></i> Change Password </a>
                             </li>
                             <li>
-                                <a href='reset_security.php'> Add Login Security </a>
+                                <a href='reset_security.php'><i class='fa fa-fw fa-lock'></i> Add Login Security </a>
                             </li>
                         </ul>
                     </li>
