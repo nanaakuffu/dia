@@ -26,7 +26,7 @@
 
               $db->close_connection($con);
               $message = "<i class='fa fa-check-square-o'></i> Your answer has been verified. Please
-                        click <a href='login_page.php'> here </a> to login.";
+                        click <a href='login_page.php'> HERE </a> to login.";
               $_SESSION['message'] = $message;
               include_once 'reset_login.php';
               exit();
@@ -49,7 +49,7 @@
           }
         } else {
           $db->close_connection($con);
-          $message = "<i class='fa fa-fw fa-close'></i> User name does not exist!";
+          $message = "<i class='fa fa-fw fa-close'></i> You may not have updated your security credentials. Please contact the system Administrator.";
           $_SESSION['message'] = $message;
           include_once 'reset_login.php';
           exit();

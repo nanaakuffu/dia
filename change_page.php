@@ -8,7 +8,8 @@
   base_header('Change Password');
   create_header();
 
-  echo "<br /><div class='w3-container row'>
+  echo "<br /><div class='container'>
+            <div class='row'>
             <div class='col-sm-3'>
               <br />
             </div>
@@ -37,6 +38,7 @@
             <div class='col-sm-3'>
               <br />
             </div>
+          </div>
         </div>
       <hr>";
     create_footer();

@@ -54,14 +54,16 @@
                 $db->close_connection($con);
                 header("Location: index.php");
               } else {
-                $message = "<i class='fa fa-fw fa-close'></i> Your user account is inactive. Please contact the system administrator about this message.";
+                $message = "<i class='fa fa-fw fa-close'></i> Your user account is inactive.
+                            Please contact the system administrator about this message.";
                 $_SESSION['message'] = $message;
                 include_once 'login_page.php';
                 exit();
               }
             } else {
               $db->close_connection($con);
-              $message = "<i class='fa fa-fw fa-close'></i> User is already logged in. If you are sure this is you, please goto <a href='reset.php'> reset login </a>
+              $message = "<i class='fa fa-fw fa-close'></i> User is already logged in. If you are sure this
+                          is you, please goto <a href='reset.php'> RESET LOGIN </a>
                           to reset your login status.";
               $_SESSION['message'] = $message;
               include_once 'login_page.php';

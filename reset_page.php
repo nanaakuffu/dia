@@ -51,7 +51,7 @@
                   placeholder='Enter security answer' value='<?php echo $answer; ?>' required>
               </div>
               <button class='btn btn-primary w3-round w3-padding-medium' type='submit' name='reset_sec'
-                  form='reset' value='reset'> <?php echo $button; ?> <i class='fa fa-fw fa-refresh'></i></button>
+                  form='reset' value='reset'> <?php echo $button; ?> <i class='fa fa-fw fa-plus'></i></button>
             </form>
         </div>
       </div>
