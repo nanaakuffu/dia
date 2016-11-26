@@ -69,7 +69,7 @@
             <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
                 <ul class='nav navbar-nav navbar-right'>
                     <li class='dropdown'>
-                        <a href='#' class='dropdown-toggle' data-toggle='dropdown'> Student <b class='glyphicon glyphicon-menu-down'></b></a>
+                        <a href='#' class='dropdown-toggle' data-toggle='dropdown'><i class='fa fa-fw fa-user-circle-o'></i> Student <b class='glyphicon glyphicon-menu-down'></b></a>
                         <ul class='dropdown-menu'>";
                             if ($_SESSION['is_admin'] == 1 or $_SESSION['is_head'] == 1 or $_SESSION['is_form_teacher'] == 1) {
                                 echo "<li><a href='add_student.php'><i class='fa fa-fw fa-group'></i> Add New Student </a></li>";
