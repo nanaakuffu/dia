@@ -39,7 +39,7 @@
                       placeholder='Search Student...'>
                   <div class='input-group-btn'>
                       <button class='btn btn-primary' form='bsearch' type='submit' name='submit'>
-                          <span class='glyphicon glyphicon-search w3-padding-tiny'></span> </button>
+                          <i class='fa fa-search w3-large'></i> </button>
                   </div>
                 </div>
             </form>";
@@ -63,13 +63,13 @@
                     <span class='icon-bar'></span>
                     <span class='icon-bar'></span>
                 </button>
-                <a class='navbar-brand' href='index.php'> <span class='glyphicon glyphicon-home'></span> DIA </a>
+                <a class='navbar-brand' href='index.php'> <i class='fa fa-home fa-fw'></i> DIA </a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
                 <ul class='nav navbar-nav navbar-right'>
                     <li class='dropdown'>
-                        <a href='#' class='dropdown-toggle' data-toggle='dropdown'><i class='fa fa-fw fa-user-circle-o'></i> Student <b class='glyphicon glyphicon-menu-down'></b></a>
+                        <a href='#' class='dropdown-toggle' data-toggle='dropdown'><i class='fa fa-user fa-fw'></i> Student <b class='glyphicon glyphicon-menu-down'></b></a>
                         <ul class='dropdown-menu'>";
                             if ($_SESSION['is_admin'] == 1 or $_SESSION['is_head'] == 1 or $_SESSION['is_form_teacher'] == 1) {
                                 echo "<li><a href='add_student.php'><i class='fa fa-fw fa-group'></i> Add New Student </a></li>";
@@ -115,7 +115,7 @@
                         <a href='users_update.php?str_1={$user}&up={$up_2}'><span class='glyphicon glyphicon-user'></span> $full_name </a>
                     </li>
                     <li>
-                        <a href='log_out.php'> Log Out <span class='glyphicon glyphicon-log-out'></span> </a>
+                        <a href='log_out.php'> Log Out <i class='fa fa-sign-out fa-fw'></i> </a>
                     </li>
                 </ul>
                 </div>
