@@ -72,7 +72,7 @@
                         <a href='#' class='dropdown-toggle' data-toggle='dropdown'><i class='fa fa-graduation-cap fa-fw'></i> Student <b class='glyphicon glyphicon-menu-down'></b></a>
                         <ul class='dropdown-menu'>";
                             if ($_SESSION['is_admin'] == 1 or $_SESSION['is_head'] == 1 or $_SESSION['is_form_teacher'] == 1) {
-                                echo "<li><a href='add_student.php'><i class='fa fa-fw fa-group'></i> Add New Student </a></li>";
+                                echo "<li><a href='add_student.php'><i class='fa fa-fw fa-user-md'></i> Add New Student </a></li>";
                                 echo "<li><a href='display_students.php'><i class='fa fa-fw fa-edit'></i> View and Edit Students </a></li>";
                                 echo "<li class='divider'></li>";
                             }

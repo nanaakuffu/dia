@@ -116,12 +116,12 @@
                   <div class='form-group'><label class='w3-validate' for='escore'>Exam Score : </label><br />
                         <input class='form-control' type='text' name='exam_score' value='{$exam}'
                           id='escore' required></div>
+              </div>
+              <div class='col-sm-4'>
                   <div class='form-group'><label class='w3-validate' for='tscore'>Total Score : </label><br />
                         <input class='form-control' type='text' id='tscore'
                         onfocus='getscoreandgrade(tscore, cscore, escore, grade, remark)' name='total_score'
                         value='{$total}'></div>
-              </div>
-              <div class='col-sm-4'>
                   <div class='form-group'><label class='w3-validate' for='grade'>Grade : </label><br />
                       <input class='form-control' type='text' id='grade' name='grade' value='{$grade}' readonly></div>
                   <div class='form-group'><label for='remark'>Remark : </label><br />

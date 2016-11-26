@@ -10,7 +10,6 @@
   login_check();
 
   base_header("Students");
-
   create_header();
 
   $db = new Database();
