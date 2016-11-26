@@ -38,7 +38,7 @@
                     placeholder='Answer' required>
               </div>
               <button class='btn btn-primary w3-round w3-padding-medium' type='submit' name='reset' form='reset'
-                      value='reset'>Reset Login <i class='fa fa-fw fa-refresh'></i></button>
+                      value='reset'>Verify and Reset <i class='fa fa-fw fa-refresh'></i></button>
             </form>
         </div>
       </div>

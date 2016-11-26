@@ -55,10 +55,21 @@
             </form>
         </div>
       </div>
+      <?php
+        if (isset($_SESSION['message'])) {
+          echo "<div class='panel panel-default'>
+                    <div class='panel-body'>", $_SESSION['message'], "</div>
+                </div>";
+          unset($_SESSION['message']);
+        }
+      ?>
     </div>
     <div class="col-sm-4">
       <br />
     </div>
 </div>
 
-<?php create_footer();  ?>
+<?php
+  $db->close_connection($con);
+  create_footer();
+?>
