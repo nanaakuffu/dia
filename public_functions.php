@@ -37,7 +37,7 @@
                 <div class='input-group margin-bottom-sm'>
                   <input class='form-control' type='text' id='search' name='search'
                       placeholder='Search Student...'>
-                  <div class='input-group-btn'>
+                  <div class='input-group-btn input-group-lg'>
                       <button class='btn btn-primary' form='bsearch' type='submit' name='submit'>
                           <i class='fa fa-search w3-large'></i> </button>
                   </div>

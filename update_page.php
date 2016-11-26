@@ -34,7 +34,7 @@
   $birth_date = (isset($_POST['Update'])) ? $_POST['date_of_birth'] : date("l, j F, Y") ;
   $gender = (isset($_POST['Update'])) ? $_POST['gender'] : 'Male' ;
 
-  echo "<br/><div class='w3-container'>
+  echo "<br/><div class='container'>
             <div class='row'>
               <div class='col-sm-3'>
                 <br />

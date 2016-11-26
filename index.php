@@ -27,7 +27,7 @@
           <div class='col-sm-6'>
             <div class='panel panel-default'>
               <div class='panel-heading w3-green'>
-                <h4><i class='fa fa-birthday-cake'></i> ", date('F', time()), " Borns </h4>
+                <h5><i class='fa fa-fw fa-birthday-cake'></i> ", date('F', time()), " Borns </h5>
               </div>
               <div class='panel-body'>
                 <table class='w3-table w3-striped w3-hoverable' cellpadding='8' cellspacing='10'>
@@ -74,5 +74,6 @@
     </div>
     </div>";
 
+    $db->close_connection($con);
     create_footer();
 ?>
