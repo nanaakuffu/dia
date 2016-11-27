@@ -8,7 +8,6 @@
     login_check();
 
     $db = new Database();
-
     $con = $db->connect_to_db();
 
     $fields = array('exam_subject', 'class_work_score', 'exam_score', 'total_score', 'average_score', 'grade',
@@ -129,5 +128,6 @@
         </div>
       </div>";
 
+    $db->close_connection($con);
     create_footer();
 ?>

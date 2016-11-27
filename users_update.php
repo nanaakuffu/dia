@@ -10,7 +10,6 @@
   login_check();
 
   base_header("Update Users");
-
   create_header();
 
   $db = new Database();
@@ -91,7 +90,7 @@
 
       unset($_POST);
       unset($_SESSION['user_id']);
-      $db->close_connection($con);
 
+      $db->close_connection($con);
       create_footer();
 ?>
