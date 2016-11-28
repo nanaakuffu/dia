@@ -72,7 +72,9 @@
             <div class='panel panel-default'>";
             if (isset($_POST['student_full_name'])){
               echo "<div class='panel-heading'>
-                      <h4><i class='fa fa-fw fa-check'></i> Examination result for <b><i>", $_POST['student_full_name'], "</i></b></h4>
+                      <h5>", $_POST['academic_year'], " ",
+                      $_POST['academic_term'], " ", $_POST['exam_type']," Examination result for <b><i>",
+                      $_POST['student_full_name'], "</i></b></h5>
                     </div>";
             }
         echo "<div class='panel-body'>

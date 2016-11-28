@@ -19,11 +19,12 @@
     $records = mysqli_num_rows($result);
 
     $rows = [];
-
+    
     echo "<br /><div class='container'>
           <div class='row'>
-          <div class='col-sm-3'>
-          </div>
+          <div class='col-sm-3'>",
+            "<pre>", var_dump($_SESSION), "</pre>",
+          "</div>
           <div class='col-sm-6'>
             <div class='panel panel-default'>
               <div class='panel-heading w3-green'>

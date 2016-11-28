@@ -42,8 +42,8 @@
   $year_7 = (isset($_POST['add_access'])) ? $_POST['teaches_year_7'] : 0 ;
   $year_8 = (isset($_POST['add_access'])) ? $_POST['teaches_year_8'] : 0 ;
   $year_9 = (isset($_POST['add_access'])) ? $_POST['teaches_year_9'] : 0 ;
-  $ig_1 = (isset($_POST['add_access'])) ? $_POST['teaches_ig_1'] : 0 ;
-  $ig_2 = (isset($_POST['add_access'])) ? $_POST['teaches_ig_2'] : 0 ;
+  $ig_1 = (isset($_POST['add_access'])) ? $_POST['teaches_igcse_1'] : 0 ;
+  $ig_2 = (isset($_POST['add_access'])) ? $_POST['teaches_igcse_2'] : 0 ;
   $as_level = (isset($_POST['add_access'])) ? $_POST['teaches_as_level'] : 0 ;
   $a_level = (isset($_POST['add_access'])) ? $_POST['teaches_a_level'] : 0 ;
   $depment = (isset($_POST['add_access'])) ? $_POST['department'] : $department[0] ;
@@ -51,8 +51,8 @@
   $year_7_sub = (isset($_POST['add_access'])) ? $_POST['year_7_subject'] : "None" ;
   $year_8_sub = (isset($_POST['add_access'])) ? $_POST['year_8_subject'] : "None" ;
   $year_9_sub = (isset($_POST['add_access'])) ? $_POST['year_9_subject'] : "None" ;
-  $ig_1_sub = (isset($_POST['add_access'])) ? $_POST['ig_1_subject'] : "None" ;
-  $ig_2_sub = (isset($_POST['add_access'])) ? $_POST['ig_2_subject'] : "None" ;
+  $ig_1_sub = (isset($_POST['add_access'])) ? $_POST['igcse_1_subject'] : "None" ;
+  $ig_2_sub = (isset($_POST['add_access'])) ? $_POST['igcse_2_subject'] : "None" ;
   $as_level_sub = (isset($_POST['add_access'])) ? $_POST['as_level_subject'] : "None" ;
   $a_level_sub = (isset($_POST['add_access'])) ? $_POST['a_level_subject'] : "None" ;
 
@@ -143,25 +143,25 @@
               </div>
               <div class='checkbox'>";
               if ($ig_1 == 1) {
-                echo "<label> <input type='checkbox' name='teaches_ig_1' value='1' checked> Teaches IG 1 </label>";
+                echo "<label> <input type='checkbox' name='teaches_igcse_1' value='1' checked> Teaches IG 1 </label>";
               } else {
-                echo "<label> <input type='checkbox' name='teaches_ig_1' value='1'> Teaches IG 1 </label>";
+                echo "<label> <input type='checkbox' name='teaches_igcse_1' value='1'> Teaches IG 1 </label>";
               }
   echo "      </div>
               <div class='form-group'>
                 <label> IG 1 Subject(s) </label>
-                <input class='form-control' type='text' name='ig_1_subject' value='{$ig_1_sub}'>
+                <input class='form-control' type='text' name='igcse_1_subject' value='{$ig_1_sub}'>
               </div>
               <div class='checkbox'>";
               if ($ig_2 == 1) {
-                echo "<label> <input type='checkbox' name='teaches_ig_2' value='1' checked> Teaches IG 2 </label>";
+                echo "<label> <input type='checkbox' name='teaches_igcse_2' value='1' checked> Teaches IG 2 </label>";
               } else {
-                echo "<label> <input type='checkbox' name='teaches_ig_2' value='1'> Teaches IG 2 </label>";
+                echo "<label> <input type='checkbox' name='teaches_igcse_2' value='1'> Teaches IG 2 </label>";
               }
   echo "      </div>
               <div class='form-group'>
                 <label> IG 2 Subject(s) </label>
-                <input class='form-control' type='text' name='ig_2_subject' value='{$ig_2_sub}'>
+                <input class='form-control' type='text' name='igcse_2_subject' value='{$ig_2_sub}'>
               </div>
             </div>
             <div class='col-sm-3'>
