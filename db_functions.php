@@ -7,10 +7,11 @@
   class Database
   {
     // Declaring data variables: host, account, password and db_name
-    var $host;
-    var $account;
-    var $password;
-    var $db_name;
+    var $host = '';
+    var $account = '';
+    var $password = '';
+    var $db_name = '';
+    var $charset = '';
 
     function __construct()
     {
@@ -291,6 +292,104 @@
         }
     }
 
+    /**
+     * Backup the whole database or just some tables
+     * Use '*' for whole database or 'table1 table2 table3...'
+     * param string $tables
+     */
+    public function backupTables($connection, $tables = '*', $outputDir = '.')
+    {
+        try
+        {
+            /**
+            * Tables to export
+            */
+            if ($tables == '*') {
+                $tables = array();
+                $result = mysqli_query($connection, 'SHOW TABLES');
+                while($row = mysqli_fetch_row($result)) {
+                    $tables[] = $row[0];
+                }
+            } else {
+                $tables = is_array($tables) ? $tables : explode(',',$tables);
+            }
+
+            $sql = 'CREATE DATABASE IF NOT EXISTS '.$this->db_name.";\n\n";
+            $sql .= 'USE '.$this->db_name.";\n\n";
+
+            /**
+            * Iterate tables
+            */
+            foreach($tables as $table) {
+                echo "Backing up ".$table." table...";
+
+                $result = mysqli_query($connection, 'SELECT * FROM '.$table);
+                $numFields = mysqli_num_fields($result);
+
+                $sql .= 'DROP TABLE IF EXISTS '.$table.';';
+                $row2 = mysqli_fetch_row(mysqli_query($connection, 'SHOW CREATE TABLE '.$table));
+                $sql.= "\n\n".$row2[1].";\n\n";
+
+                for ($i = 0; $i < $numFields; $i++) {
+                    while($row = mysqli_fetch_row($result))
+                    {
+                        $sql .= 'INSERT INTO '.$table.' VALUES(';
+                        for($j=0; $j<$numFields; $j++)
+                        {
+                            $row[$j] = addslashes($row[$j]);
+                            $row[$j] = preg_replace("\n","\\n",$row[$j]);
+                            if (isset($row[$j])) {
+                                $sql .= '"'.$row[$j].'"' ;
+                            } else {
+                                $sql.= '""';
+                            }
+
+                            if ($j < ($numFields-1)) {
+                                $sql .= ',';
+                            }
+                        }
+
+                        $sql.= ");\n";
+                    }
+                }
+
+                $sql.="\n\n\n";
+
+                echo " OK" . " ";
+            }
+        } catch (Exception $e) {
+            var_dump($e->getMessage());
+            return FALSE;
+        }
+
+        return $this->download_file($sql);
+    }
+
+    /**
+     * Save SQL to file
+     * param string $sql
+     */
+    protected function download_file(&$sql)
+    {
+        if (!$sql) return FALSE;
+
+        try
+        {
+            $file_name = $this->db_name.'_data_backup_'.date("d", time()).'_'.date("m", time()).'_'.date("y", time()).'sql';
+            $handle = fopen($file_name, 'w+');
+            fwrite($handle, $sql);
+            fclose($handle);
+
+            Header('Content-type: application/octet-stream');
+            Header('Content-Disposition: attachment; filename='.$file_name);
+        } catch (Exception $e) {
+            var_dump($e->getMessage());
+            return FALSE;
+        }
+
+        return TRUE;
+    }
+
     function change_full_name($connection, $value_to_change, $prim_value)
     {
       // $user_details = "UPDATE login_details SET full_name="."'".$value_to_change."'"." WHERE user_name="."'".$prim_value."'";
@@ -548,4 +647,5 @@
       return $subjects;
     }
   }
+
 ?>
