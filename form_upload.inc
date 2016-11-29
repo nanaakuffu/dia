@@ -15,6 +15,7 @@ Description: Displays a form to upload a file -->
         <input type="hidden" name="MAX_FILE_SIZE" value="500000">
         <input type="file" name="pix" size="60">
         <p><input type="submit" name="Upload" value="Upload Picture">
+        <a href='./Downloads/'> Here </a>
       </form>
   </body>
 </html>
