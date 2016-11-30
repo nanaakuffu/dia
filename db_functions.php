@@ -297,8 +297,9 @@
      * Use '*' for whole database or 'table1 table2 table3...'
      * param string $tables
      */
-    public function backupTables($connection, $tables = '*', $outputDir = '.')
+    public function backupTables($connection, $tables = '*')
     {
+        mysqli_query($connection, "SET NAMES '". $this->charset."'");
         try
         {
             /**
@@ -321,7 +322,7 @@
             * Iterate tables
             */
             foreach($tables as $table) {
-                echo "Backing up ".$table." table...";
+                // echo "Backing up ".$table." table...";
 
                 $result = mysqli_query($connection, 'SELECT * FROM '.$table);
                 $numFields = mysqli_num_fields($result);
@@ -337,7 +338,7 @@
                         for($j=0; $j<$numFields; $j++)
                         {
                             $row[$j] = addslashes($row[$j]);
-                            $row[$j] = preg_replace("\n","\\n",$row[$j]);
+                            $row[$j] = ereg_replace("\n","\\n",$row[$j]);
                             if (isset($row[$j])) {
                                 $sql .= '"'.$row[$j].'"' ;
                             } else {
@@ -355,7 +356,7 @@
 
                 $sql.="\n\n\n";
 
-                echo " OK" . " ";
+                // echo " OK" . "\n";
             }
         } catch (Exception $e) {
             var_dump($e->getMessage());
@@ -375,13 +376,14 @@
 
         try
         {
-            $file_name = $this->db_name.'_data_backup_'.date("d", time()).'_'.date("m", time()).'_'.date("y", time()).'sql';
-            $handle = fopen($file_name, 'w+');
-            fwrite($handle, $sql);
-            fclose($handle);
+            $file_name = $this->db_name.'_data_backup_'.date("d", time()).'_'.date("m", time()).'_'.date("y", time()).'.sql';
+            
+            header('Content-Type: application/octet-stream');
+            header("Content-Transfer-Encoding: Binary");
+            header("Content-disposition: attachment; filename=\"".$file_name."\"");
+            echo $sql;
+            exit;
 
-            Header('Content-type: application/octet-stream');
-            Header('Content-Disposition: attachment; filename='.$file_name);
         } catch (Exception $e) {
             var_dump($e->getMessage());
             return FALSE;
