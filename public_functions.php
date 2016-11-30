@@ -98,6 +98,7 @@
                             <li>";
                             if ($_SESSION['is_admin'] == 1) {
                                 echo "<a href='display_users.php'><i class='fa fa-fw fa-edit'></i> View and Edit Users </a>";
+                                echo "<a href='down_page.php'><i class='fa fa-fw fa-database'></i> Back Up Database </a>";
                             }
                       echo "</li>
                             <li>

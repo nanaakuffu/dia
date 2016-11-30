@@ -1,12 +1,23 @@
 <?php
-  require_once 'db_functions.php';
 
-  $db = new Database();
-  $con = $db->connect_to_db();
+  include_once 'db_functions.php';
 
-  $db->backupTables($con);
-  // $db->Export_Database($con);
+  if (isset($_POST['download'])) {
+    $db = new Database();
+    $con = $db->connect_to_db();
 
-  $db->close_connection($con);
-  // include_once 'index.php';
+    $backup = $db->backupTables($con);
+    // $db->Export_Database($con);
+    if ($backup) {
+      $message="<i class='fa fa-fw fa-check-box'></i> Database backup completed succesfully!";
+      $_SESSION['message'] = $message;
+      include_once 'down_page.php';
+    } else {
+      $message="<i class='fa fa-fw fa-close'></i>Database backup completed succesfully!";
+      $_SESSION['message'] = $message;
+      include_once 'down_page.php';
+    }
+
+    $db->close_connection($con);
+  }
 ?>
