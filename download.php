@@ -7,7 +7,7 @@
     $con = $db->connect_to_db();
 
     $backup = $db->backupTables($con);
-    // $db->Export_Database($con);
+
     if ($backup) {
       $message="<i class='fa fa-fw fa-check-box'></i> Database backup completed succesfully!";
       $_SESSION['message'] = $message;
