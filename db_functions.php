@@ -298,7 +298,7 @@
      * Use '*' for whole database or 'table1 table2 table3...'
      * param string $tables
      */
-    public function backupTables($connection, $tables = '*')
+    public function backup_database($connection, $tables = '*')
     {
         mysqli_query($connection, "SET NAMES '". $this->charset."'");
         try

@@ -6,7 +6,7 @@
     $db = new Database();
     $con = $db->connect_to_db();
 
-    $backup = $db->backupTables($con);
+    $backup = $db->backup_database($con);
 
     if ($backup) {
       $message="<i class='fa fa-fw fa-check-box'></i> Database backup completed succesfully!";
