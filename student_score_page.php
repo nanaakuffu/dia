@@ -113,21 +113,20 @@
             echo "</div>
                   <div class='form-group'><label class='w3-validate' for='cscore'>Class Score : </label><br />
                         <input class='form-control' type='text' name='class_work_score' value='{$class}'
-                          id='cscore' required></div>
+                          id='classscore' required></div>
                   <div class='form-group'><label class='w3-validate' for='escore'>Exam Score : </label><br />
                         <input class='form-control' type='text' name='exam_score' value='{$exam}'
-                          id='escore' required></div>
+                          id='examscore' required></div>
               </div>
               <div class='col-sm-4'>
-                  <div class='form-group'><label class='w3-validate' for='tscore'>Total Score : </label><br />
-                        <input class='form-control' type='text' id='tscore'
-                        onfocus='getscoreandgrade(tscore, cscore, escore, grade, remark)' name='total_score'
+                  <div class='form-group'><label class='w3-validate' for='totalscore'>Total Score : </label><br />
+                        <input class='form-control' type='text' id='totalscore'
+                        onfocus='getscoreandgrade(totalscore, classscore, examscore, grades, remarks)' name='total_score'
                         value='{$total}'></div>
                   <div class='form-group'><label class='w3-validate' for='grade'>Grade : </label><br />
-                      <input class='form-control' type='text' id='grade' name='grade' value='{$grade}' readonly></div>
-                  <div class='form-group'><label for='remark'>Remark : </label><br />
-                      <input class='form-control' type='text' id='remark' name='remark' value='{$remarks}'
-                           readonly></div>
+                      <input class='form-control' type='text' id='grades' name='grade' value='{$grade}' readonly></div>
+                  <div class='form-group'><label class='w3-validate' for='remark'>Remark : </label><br />
+                      <input class='form-control' type='text' id='remarks' name='remark' value='{$remarks}' readonly></div>
                   <input type='hidden' name='teacher_initials' value='{$initials}'>";
                   if (!isset($_SESSION['update_score'])) {
                     echo "<input class='btn btn-primary w3-round w3-padding-medium' type='submit' name='add_score'
