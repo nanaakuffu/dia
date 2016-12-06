@@ -9,8 +9,8 @@
   define("DELETE_MSG", "Data was deleted successfully");
 
   #Database constants
-  define("DB_NAME", "dia_new");
-  define("DB_PASSWORD", "");
+  define("DB_NAME", "dia");
+  define("DB_PASSWORD", "admin");
   define("DB_USER_NAME", "root");
   define("DB_HOST", "localhost");
 
