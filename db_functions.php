@@ -377,7 +377,7 @@
 
         try
         {
-            $file_name = $this->db_name.'_data_backup_'.date("d", time()).'_'.date("m", time()).'_'.date("y", time()).'.sql';
+            $file_name = $this->db_name.'_data_backup_'.date("d", time()).'_'.date("M", time()).'_'.date("y", time()).'.sql';
 
             header('Content-Type: application/octet-stream');
             header("Content-Transfer-Encoding: Binary");
