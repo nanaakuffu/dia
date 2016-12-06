@@ -34,8 +34,9 @@
     $_SESSION['update_score'] = TRUE;
   }
 
-  if (isset($_SESSION['message']) and isset($_SESSION['update_score'])) {
+  if (isset($_SESSION['message'])) {
     $exam_id = $_SESSION['id'];
+    $_SESSION['update_score'] = TRUE;
   }
 
   // Set default values
