@@ -1,6 +1,6 @@
 <?php
 
-    include_once "db_functions.php";
+    require_once "db_functions.php";
 
     $db = new Database();
     $con = $db->connect_to_db();
