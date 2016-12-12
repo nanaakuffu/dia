@@ -40,10 +40,10 @@
   }
 
   // Set default values
-  $year = (isset($_POST['add_score'])) ? $_POST['academic_year'] : $year_array[0] ;
-  $term = (isset($_POST['add_score'])) ? $_POST['academic_term'] : $term_array[0] ;
-  $ex_type = (isset($_POST['add_score'])) ? $_POST['exam_type'] : $type_array[0] ;
-  $subject = (isset($_POST['add_score'])) ? $_POST['exam_subject'] : $subject_array[0] ;
+  $year = (isset($_POST['add_score'])) ? $_POST['academic_year'] : $_year = (isset($_SESSION['academic_year'])) ? $_SESSION['academic_year'] : $year_array[0];
+  $term = (isset($_POST['add_score'])) ? $_POST['academic_term'] : $_term = (isset($_SESSION['academic_term'])) ? $_SESSION['academic_term'] : $term_array[0] ;
+  $ex_type = (isset($_POST['add_score'])) ? $_POST['exam_type'] : $_type = (isset($_SESSION['exam_type'])) ? $_SESSION['exam_type'] : $type_array[0] ;
+  $subject = (isset($_POST['add_score'])) ? $_POST['exam_subject'] : $_subject = (isset($_SESSION['exam_subject'])) ? $_SESSION['exam_subject'] : $subject_array[0] ;
   $full_name = (isset($_POST['add_score'])) ? $_POST['student_full_name'] : "" ;
   $initials = (isset($_POST['add_score'])) ? $_POST['teacher_initials'] : "" ;
   $class = (isset($_POST['add_score'])) ? $_POST['class_work_score'] : "" ;

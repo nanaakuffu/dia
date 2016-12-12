@@ -173,6 +173,12 @@
                 $avg_sql = substr($avg_sql, 0, strlen($avg_sql) - 4);
                 $result = mysqli_query($con, $avg_sql);
 
+                // Save default valuess
+                $_SESSION['academic_year'] = $_POST['academic_year'];
+                $_SESSION['academic_term'] = $_POST['academic_term'];
+                $_SESSION['exam_type'] = $_POST['exam_type'];
+                $_SESSION['exam_subject'] = $_POST['exam_subject'];
+
                 include_once 'student_score_page.php';
             } else {
                 $_SESSION['message'] = "The data you are trying to add already exists!";

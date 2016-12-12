@@ -1,7 +1,7 @@
 <?php
     function base_header($title='')
     {
-      echo "<!DOCTYPE>
+      echo "<!DOCTYPE html>
             <html lang='en-US'>
             <head>
                 <meta charset='utf-8'>

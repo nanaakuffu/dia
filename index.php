@@ -31,7 +31,7 @@
                 <h5><i class='fa fa-fw fa-birthday-cake'></i> ", date('F', time()), " Borns </h5>
               </div>
               <div class='panel-body'>
-                <table class='w3-table w3-striped w3-hoverable' cellpadding='8' cellspacing='10'>
+                <table class='table-responsive w3-table w3-striped w3-hoverable' cellpadding='8' cellspacing='10'>
                   <tr class='w3-red'>
                     <th> Full Name </th>
                     <th> Class </th>
