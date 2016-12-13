@@ -17,9 +17,9 @@
                 <div class='panel-heading'> Database Backup System </div>
                 <div class='panel-body'>
                   This feature helps you to create a <b>.sql</b> file of the database.<br />
-                  It is saved with filename as <b>databasename_day_month_year</b>. This file contains<br />
-                  the SQL format of the whole database. It is also not machine specific. Which means
-                  if you have administrator access you can download on any machine you use to log in.
+                  It is saved with filename as <b>databasename_day_month_year</b>. This file contains
+                  the <b>SQL</b> format of the whole database. It is also not machine specific. Which means
+                  if you have administrative access you can download on any machine you use to log in.
                   <p> To backup, click on the backup button below.</p>
 
                   <form action='download.php' id='btn_button' method='POST'>
