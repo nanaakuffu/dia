@@ -54,8 +54,8 @@
                           <option> Student Full Name </option>
                       </select>
                     </div>
-                    <button class='btn btn-primary w3-padding-medium' form='search' type='submit' name='submit'> Search <i class='fa fa-search fa-fw'></i> </button>
-              </form>";
+                    <button class='btn btn-primary w3-padding-medium' form='search' type='submit' name='submit'> <i class='fa fa-search fa-fw'></i> Search </button>
+              </form><br />";
           if (isset($_POST['submit'])) {
             unset($_POST['submit']);
             $records = $db->search_by_multiple($con, "exams", $fields, $_POST, 'exam_subject');

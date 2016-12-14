@@ -25,7 +25,7 @@
 
     echo "<div class='container'>",
             search_bar('display_users.php'),
-           "<div class='table-responsive'>
+           "<br /><div class='table-responsive'>
               <table class='w3-table w3-striped w3-hoverable' align='center' cellspacing='5'>
                 <tr class='w3-green'>";
                   $headers = "";
