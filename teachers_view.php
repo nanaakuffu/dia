@@ -46,7 +46,7 @@
                   <div class='form-group'>", select_data($name_array, 'exam_subject', $name, 100, TRUE), "</div>
                   <button class='btn btn-primary w3-padding-medium' form='search' type='submit' name='submit'> <i class='fa fa-search fa-fw'></i> Search </button>
               </form>
-          </div>";
+          </div><br />";
           if (isset($_POST['submit'])) {
             unset($_POST['submit']);
             $records = $db->search_by_multiple($con, "exams", $fields, $_POST, 'exam_subject');
