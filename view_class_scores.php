@@ -54,9 +54,8 @@
                           <option> Student Full Name </option>
                       </select>
                     </div>
-                    <button class='btn btn-primary w3-round w3-padding-large' form='search' type='submit' name='submit'> <span class='glyphicon glyphicon-search'></span> </button>
-              </form>
-          </div>";
+                    <button class='btn btn-primary w3-padding-medium' form='search' type='submit' name='submit'> Search <i class='fa fa-search fa-fw'></i> </button>
+              </form>";
           if (isset($_POST['submit'])) {
             unset($_POST['submit']);
             $records = $db->search_by_multiple($con, "exams", $fields, $_POST, 'exam_subject');
@@ -68,8 +67,7 @@
       $match = $form_name;
     }
 
-    echo "<div class='container'>
-            <div class='panel panel-default'>";
+    echo "<div class='panel panel-default'>";
             if (isset($_POST['student_full_name'])){
               echo "<div class='panel-heading'>
                       <h5>", $_POST['academic_year'], " ",

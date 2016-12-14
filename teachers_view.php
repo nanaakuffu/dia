@@ -44,7 +44,7 @@
                   <div class='form-group'>", select_data($type_array, 'exam_type', $exam, 100), "</div>
                   <div class='form-group'>", select_data($class_array, 'class_name', $class, 100), "</div>
                   <div class='form-group'>", select_data($name_array, 'exam_subject', $name, 100, TRUE), "</div>
-                  <button class='btn btn-primary w3-round w3-padding-large' form='search' type='submit' name='submit'> <span class='glyphicon glyphicon-search'></span> </button>
+                  <button class='btn btn-primary w3-round w3-padding-medium' form='search' type='submit' name='submit'> <span class='glyphicon glyphicon-search'></span> </button>
               </form>
           </div>";
           if (isset($_POST['submit'])) {
@@ -57,7 +57,7 @@
       $class_name = get_class_name($_POST['class_name']);
       $sub_array = get_subject($_POST['class_name']);
     }
-    
+
 
     echo "<div class='container'>
             <div class='table-responsive'>
