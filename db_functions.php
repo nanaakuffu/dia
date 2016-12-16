@@ -450,7 +450,7 @@
 
     function update_average($connection, $table, $fields)
     {
-      $avg = $db->get_average_score($connection, $table, $fields);
+      $avg = $this->get_average_score($connection, $table, $fields);
       $average = (float)$avg[0]['avg_score'];
       $avg_sql = "UPDATE $table SET average_score="."'"."$average"."' WHERE ";
       foreach ($fields as $key => $value) {

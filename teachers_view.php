@@ -21,7 +21,7 @@
     $year_array = academic_year();
     $term_array = array('First Term', 'Second Term', 'Third Term');
     $type_array = $db->create_data_array($con, 'exam_type', 'exam_name');
-    $name_array = $db->create_data_array($con, 'subjects', 'subject_name', TRUE, TRUE);
+    $subject_array = $db->create_data_array($con, 'subjects', 'subject_name', TRUE, TRUE);
     $class_array = array("Year 7", "Year 8", "Year 9", "IGCSE 1", "IGCSE 2", "AS Level", "A Level");
     $lower_secondary = array('Year 7', 'Year 8', 'Year 9');
     $upper_secondary = array('IGCSE 1', 'IGCSE 2', 'AS Level', 'A Level');
@@ -31,11 +31,11 @@
     $form_name = $_SESSION['form_name'];
 
     // defailt values
-    $year = (isset($_POST['submit'])) ? $_POST['academic_year'] : $year_array[0] ;
-    $term = (isset($_POST['submit'])) ? $_POST['academic_term'] : $term_array[0] ;
-    $exam = (isset($_POST['submit'])) ? $_POST['exam_type'] : $type_array[0] ;
-    $class = (isset($_POST['submit'])) ? $_POST['class_name'] : $class_array[0] ;
-    $name = (isset($_POST['submit'])) ? $_POST['exam_subject'] : $name_array[0] ;
+    $year = (isset($_POST['submit'])) ? $_POST['academic_year'] : $_year = (isset($_SESSION['academic_year'])) ? $_SESSION['academic_year'] : $year_array[0];
+    $term = (isset($_POST['submit'])) ? $_POST['academic_term'] : $_term = (isset($_SESSION['academic_term'])) ? $_SESSION['academic_term'] : $term_array[0];
+    $exam = (isset($_POST['submit'])) ? $_POST['exam_type'] : $_type = (isset($_SESSION['exam_type'])) ? $_SESSION['exam_type'] : $type_array[0];
+    $class = (isset($_POST['submit'])) ? $_POST['class_name'] : $_class = (isset($_SESSION['class_name'])) ? $_SESSION['class_name'] : $class_array[0] ;
+    $name = (isset($_POST['submit'])) ? $_POST['exam_subject'] : $_subject = (isset($_SESSION['exam_subject'])) ? $_SESSION['exam_subject'] : $subject_array[0];
 
     echo "<div class='container'>
               <form class='form-inline' action='teachers_view.php' method='POST' id='search' style='margin-top: 15px'>
@@ -43,7 +43,7 @@
                   <div class='form-group'>", select_data($term_array, 'academic_term', $term, 100), "</div>
                   <div class='form-group'>", select_data($type_array, 'exam_type', $exam, 100), "</div>
                   <div class='form-group'>", select_data($class_array, 'class_name', $class, 100), "</div>
-                  <div class='form-group'>", select_data($name_array, 'exam_subject', $name, 100, TRUE), "</div>
+                  <div class='form-group'>", select_data($subject_array, 'exam_subject', $name, 100, TRUE), "</div>
                   <button class='btn btn-primary w3-padding-medium' form='search' type='submit' name='submit'> <i class='fa fa-search fa-fw'></i> Search </button>
               </form>
           </div><br />";

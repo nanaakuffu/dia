@@ -149,7 +149,7 @@
                   $save_data = $db->add_new($con, $_POST, "exams");
 
                   // Update the average score for the new entered data
-                  $db->update_score($con, 'exams', avg_criteria);
+                  $db->update_average($con, 'exams', $avg_criteria);
 
                   // Save default valuess
                   $_SESSION['academic_year'] = $_POST['academic_year'];
@@ -173,7 +173,13 @@
               $save_data = $db->update_data($con, $_POST, "exams", "exam_id", $_POST['exam_id']);
 
               // Update the average score for the new entered data
-              $db->update_score($con, 'exams', avg_criteria);
+              $db->update_average($con, 'exams', $avg_criteria);
+
+              $_SESSION['academic_year'] = $_POST['academic_year'];
+              $_SESSION['academic_term'] = $_POST['academic_term'];
+              $_SESSION['exam_type'] = $_POST['exam_type'];
+              $_SESSION['exam_subject'] = $_POST['exam_subject'];
+              $_SESSION['class_name'] = $_POST['class_name'];
 
               unset($_SESSION['update_score']);
               unset($_SESSION['id']);
@@ -183,12 +189,12 @@
             default:
               $delete_data = $db->delete_data($con, "exams", "exam_id", $_POST['exam_id']);
               if ($delete_data) {
+                $db->update_average($con, 'exams', $avg_criteria);
                 header("Location: teachers_view.php");
               } else {
                 echo DELETE_ERROR;
               }
               // Update the average score for the new entered data
-              $db->update_score($con, 'exams', avg_criteria);
               break;
           }
           // Actually save the date
