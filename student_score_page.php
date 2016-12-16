@@ -130,10 +130,20 @@
                   <input type='hidden' name='teacher_initials' value='{$initials}'>";
                   if (!isset($_SESSION['update_score'])) {
                     echo "<input class='btn btn-primary w3-round w3-padding-medium' type='submit' name='add_score'
-                          value='Add Scores'>";
+                          value='Add Score'>";
                   } else {
-                    echo "<input class='btn btn-primary w3-round w3-padding-medium' type='submit' name='add_score'
-                          value='Update Scores'>";
+                    if ($_SESSION['is_admin']) {
+                      echo "<div class='btn-group'>
+                              <input class='btn btn-primary w3-padding-medium' type='submit' name='add_score'
+                                  value='Update Score'>
+                              <input class='btn btn-primary w3-padding-medium' type='submit' name='add_score'
+                                  value='Delete Score'>
+                              <a class='btn btn-primary w3-padding-medium' href='teachers_view.php'>Back</a>
+                            </div>";
+                    } else {
+                      echo "<input class='btn btn-primary w3-round w3-padding-medium' type='submit' name='add_score'
+                            value='Update Score'>";
+                    }
                   }
     echo "      </div>
             </div>

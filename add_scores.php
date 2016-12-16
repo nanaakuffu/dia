@@ -6,7 +6,7 @@
   require_once "public_vars.php";
   require_once "public_functions.php";
 
-  if(!isset($_POST['add_score'])) {
+  if (!isset($_POST['add_score'])) {
     include_once "student_score_page.php";
     exit();
   } else {
@@ -130,61 +130,72 @@
           // Do some minor data additions: Add teachers signature
           $_POST['teacher_initials'] = $_SESSION['initials'];
 
-          /* Removes unwanted field names that came from the form */
-          $_POST = filter_array($_POST, $field_names_array);
-
           // Get class average
           $avg_fields = array('academic_year', 'academic_term', 'exam_type', 'exam_subject', 'class_name');
           $avg_criteria = filter_array($_POST, $avg_fields);
 
           // Actually save the date
+          switch ($_POST['add_score']) {
+            case 'Add Score':
+              /* Removes unwanted field names that came from the form */
+              $_POST = filter_array($_POST, $field_names_array);
+
+              $fields = array('academic_year', 'academic_term', 'exam_type', 'exam_subject', 'student_full_name', 'class_name');
+              $criteria = filter_array($_POST, $fields);
+              $data_checked = $db->data_exists($con, "exams", $fields, $criteria);
+
+              if (!$data_checked) {
+                  // Add new data
+                  $save_data = $db->add_new($con, $_POST, "exams");
+
+                  // Update the average score for the new entered data
+                  $db->update_score($con, 'exams', avg_criteria);
+
+                  // Save default valuess
+                  $_SESSION['academic_year'] = $_POST['academic_year'];
+                  $_SESSION['academic_term'] = $_POST['academic_term'];
+                  $_SESSION['exam_type'] = $_POST['exam_type'];
+                  $_SESSION['exam_subject'] = $_POST['exam_subject'];
+
+                  include_once 'student_score_page.php';
+              } else {
+                  $_SESSION['message'] = "The data you are trying to add already exists!";
+                  // $_SESSION['id'] = $exam_id;
+                  include_once "student_score_page.php";
+              }
+              break;
+
+            case 'Update Score':
+              /* Removes unwanted field names that came from the form */
+              $_POST = filter_array($_POST, $field_names_array);
+
+              // Update the data
+              $save_data = $db->update_data($con, $_POST, "exams", "exam_id", $_POST['exam_id']);
+
+              // Update the average score for the new entered data
+              $db->update_score($con, 'exams', avg_criteria);
+
+              unset($_SESSION['update_score']);
+              unset($_SESSION['id']);
+              header("Location: teachers_view.php");
+              break;
+
+            default:
+              $delete_data = $db->delete_data($con, "exams", "exam_id", $_POST['exam_id']);
+              if ($delete_data) {
+                header("Location: teachers_view.php");
+              } else {
+                echo DELETE_ERROR;
+              }
+              // Update the average score for the new entered data
+              $db->update_score($con, 'exams', avg_criteria);
+              break;
+          }
+          // Actually save the date
           if (isset($_SESSION['update_score'])) {
-            // Update the data
-            $save_data = $db->update_data($con, $_POST, "exams", "exam_id", $_POST['exam_id']);
 
-            // Update the average score for the new entered data
-            $avg = $db->get_average_score($con, "exams", $avg_criteria);
-            $average = (float)$avg[0]['avg_score'];
-            $avg_sql = "UPDATE exams SET average_score="."'"."$average"."' WHERE ";
-            foreach ($avg_criteria as $key => $value) {
-              $avg_sql .= $key." = "."'".$value."'"." AND ";
-            }
-            $avg_sql = substr($avg_sql, 0, strlen($avg_sql) - 4);
-            $result = mysqli_query($con, $avg_sql);
-
-            unset($_SESSION['update_score']);
-            unset($_SESSION['id']);
-            header("Location: teachers_view.php");
           } else {
-            $fields = array('academic_year', 'academic_term', 'exam_type', 'exam_subject', 'student_full_name', 'class_name');
-            $criteria = filter_array($_POST, $fields);
-            $data_checked = $db->data_exists($con, "exams", $fields, $criteria);
 
-            if (!$data_checked) {
-                // Add new data
-                $save_data = $db->add_new($con, $_POST, "exams");
-                // Update average for new data added
-                $avg = $db->get_average_score($con, "exams", $avg_criteria);
-                $average = (float)$avg[0]['avg_score'];
-                $avg_sql = "UPDATE exams SET average_score="."'"."$average"."' WHERE ";
-                foreach ($avg_criteria as $key => $value) {
-                  $avg_sql .= $key." = "."'".$value."'"." AND ";
-                }
-                $avg_sql = substr($avg_sql, 0, strlen($avg_sql) - 4);
-                $result = mysqli_query($con, $avg_sql);
-
-                // Save default valuess
-                $_SESSION['academic_year'] = $_POST['academic_year'];
-                $_SESSION['academic_term'] = $_POST['academic_term'];
-                $_SESSION['exam_type'] = $_POST['exam_type'];
-                $_SESSION['exam_subject'] = $_POST['exam_subject'];
-
-                include_once 'student_score_page.php';
-            } else {
-                $_SESSION['message'] = "The data you are trying to add already exists!";
-                // $_SESSION['id'] = $exam_id;
-                include_once "student_score_page.php";
-            }
           }
 
          // Closing the database

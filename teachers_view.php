@@ -119,5 +119,6 @@
     echo "</div>
       </div>";
 
+    $db->close_connection($con);
     create_footer();
 ?>

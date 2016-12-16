@@ -448,6 +448,18 @@
       }
     }
 
+    function update_average($connection, $table, $fields)
+    {
+      $avg = $db->get_average_score($connection, $table, $fields);
+      $average = (float)$avg[0]['avg_score'];
+      $avg_sql = "UPDATE $table SET average_score="."'"."$average"."' WHERE ";
+      foreach ($fields as $key => $value) {
+        $avg_sql .= $key." = "."'".$value."'"." AND ";
+      }
+      $avg_sql = substr($avg_sql, 0, strlen($avg_sql) - 4);
+      $result = mysqli_query($connection, $avg_sql);
+    }
+
     function exec_query($connection, $query)
     {
       $result = mysqli_query($connection, $query) or
