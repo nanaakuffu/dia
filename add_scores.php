@@ -190,18 +190,19 @@
               $delete_data = $db->delete_data($con, "exams", "exam_id", $_POST['exam_id']);
               if ($delete_data) {
                 $db->update_average($con, 'exams', $avg_criteria);
+
+                $_SESSION['academic_year'] = $_POST['academic_year'];
+                $_SESSION['academic_term'] = $_POST['academic_term'];
+                $_SESSION['exam_type'] = $_POST['exam_type'];
+                $_SESSION['exam_subject'] = $_POST['exam_subject'];
+                $_SESSION['class_name'] = $_POST['class_name'];
+                
                 header("Location: teachers_view.php");
               } else {
                 echo DELETE_ERROR;
               }
               // Update the average score for the new entered data
               break;
-          }
-          // Actually save the date
-          if (isset($_SESSION['update_score'])) {
-
-          } else {
-
           }
 
          // Closing the database
