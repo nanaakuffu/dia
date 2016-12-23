@@ -272,18 +272,10 @@
         $new_value = strval(strlen(intval(ord(substr($string, $i, 1)) + $key_len)));
         $new_value .= strval(intval(ord(substr($string, $i, 1)) + $key_len));
         $encrypted .= $new_value;
-        echo $encrypted, "<br>";
         $i += 1;
       }
-      // $encrypted = strrev($encrypted);
-      // $enc_array = str_split($encrypted);
-      // $enc_len = strlen($encrypted);
-      // while ($j <= $enc_len) {
-      //   $encrypt .= chr(substr($encrypted, $j, 2));
-      //   $j += 2;
-      // }
 
-      // return $encrypted;
+      return $encrypted;
     }
 
     function decrypt_data($string)
