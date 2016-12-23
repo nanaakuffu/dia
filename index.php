@@ -22,8 +22,11 @@
 
     echo "<br /><div class='container'>
           <div class='row'>
-          <div class='col-sm-3'>
-          </div>
+          <div class='col-sm-3'>",
+            encryption("password", "Nana Baah Akuffu"), "<br>",
+            encryption("password", "Danquah"), "<br>",
+            substr("Nana Baah", 1, 1),
+          "</div>
           <div class='col-sm-6'>
             <div class='panel panel-default'>
               <div class='panel-heading w3-green'>

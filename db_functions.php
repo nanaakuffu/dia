@@ -15,7 +15,7 @@
 
     function __construct()
     {
-      // Loading data details and initializng class
+      // Loading database details and initializng class
       require_once("public_vars.php");
       $this->host = DB_HOST;
       $this->account = DB_USER_NAME;
