@@ -33,29 +33,35 @@
     $name = (isset($_POST['submit'])) ? $_POST['student_full_name'] : $retVal = (sizeof($name_array) > 0 ) ? $name_array[0] : '' ;
 
     echo "<div class='container'>
-              <form class='form-inline' action='view_class_scores.php' method='POST' id='search' style='margin-top: 15px'>
-                    <div class='form-group'>", select_data($year_array, 'academic_year', $year, 100), "</div>
-                    <div class='form-group'>", select_data($term_array, 'academic_term', $term, 100), "</div>
-                    <div class='form-group'>", select_data($type_array, 'exam_type', $exam, 100), "</div>
-                    <div class='form-group'>
-                      <select class='w3-select w3-border w3-round' name='class_name' onchange='getstudent(this.value)'>
-                          <option value=''> Select a class </option>
-                          <option value='Year 7'> Year 7 </option>
-                          <option value='Year 8'> Year 8 </option>
-                          <option value='Year 9'> Year 9 </option>
-                          <option value='IGCSE 1'> IGCSE 1 </option>
-                          <option value='IGCSE 2'> IGCSE 2 </option>
-                          <option value='AS Level'> AS Level </option>
-                          <option value='A Level'> A Level </option>
-                      </select>
-                    </div>
-                    <div class='form-group'>
-                      <select class='w3-select w3-border w3-round' name='student_full_name' id='second_choice'>
-                          <option> Student Full Name </option>
-                      </select>
-                    </div>
-                    <button class='btn btn-primary w3-padding-medium' form='search' type='submit' name='submit'> <i class='fa fa-search fa-fw'></i> Search </button>
-              </form><br />";
+            <div class='row'>
+              <div class='col-md-12'>
+                <form class='form-inline' action='view_class_scores.php' method='POST' id='search' style='margin-top: 15px'>
+                      <div class='form-group'>", select_data($year_array, 'academic_year', $year, 100), "</div>
+                      <div class='form-group'>", select_data($term_array, 'academic_term', $term, 100), "</div>
+                      <div class='form-group'>", select_data($type_array, 'exam_type', $exam, 100), "</div>
+                      <div class='form-group'>
+                        <select class='w3-select w3-border w3-round' name='class_name' onchange='getstudent(this.value)'>
+                            <option value=''> Select a class </option>
+                            <option value='Year 7'> Year 7 </option>
+                            <option value='Year 8'> Year 8 </option>
+                            <option value='Year 9'> Year 9 </option>
+                            <option value='IGCSE 1'> IGCSE 1 </option>
+                            <option value='IGCSE 2'> IGCSE 2 </option>
+                            <option value='AS Level'> AS Level </option>
+                            <option value='A Level'> A Level </option>
+                        </select>
+                      </div>
+                      <div class='form-group'>
+                        <select class='w3-select w3-border w3-round' name='student_full_name' id='second_choice'>
+                            <option> Student Full Name </option>
+                        </select>
+                      </div>
+                      <div class='form-group'>
+                        <button class='btn btn-primary btn-block w3-padding-medium' form='search' type='submit' name='submit'> <i class='fa fa-search fa-fw'></i> Search </button>
+                      </div>
+                </form>
+              </div>
+            </div><br />";
           if (isset($_POST['submit'])) {
             unset($_POST['submit']);
             $records = $db->search_by_multiple($con, "exams", $fields, $_POST, 'exam_subject');

@@ -38,17 +38,20 @@
     $name = (isset($_POST['submit'])) ? $_POST['exam_subject'] : $_subject = (isset($_SESSION['exam_subject'])) ? $_SESSION['exam_subject'] : $subject_array[0];
 
     echo "<div class='container'>
-              <form class='form-inline' action='teachers_view.php' method='POST' id='search' style='margin-top: 15px'>
-                  <div class='form-group'>", select_data($year_array, 'academic_year', $year, 100), "</div>
-                  <div class='form-group'>", select_data($term_array, 'academic_term', $term, 100), "</div>
-                  <div class='form-group'>", select_data($type_array, 'exam_type', $exam, 100), "</div>
-                  <div class='form-group'>", select_data($class_array, 'class_name', $class, 100), "</div>
-                  <div class='form-group'>", select_data($subject_array, 'exam_subject', $name, 100, TRUE), "</div>
-                  <div class='form-group'>
-                    <button class='btn btn-primary w3-padding-medium' form='search' type='submit' name='submit'> <i class='fa fa-search fa-fw'></i> Search </button>
-                  </div>
-              </form>
-          </div><br />";
+            <div class='row'>
+              <div class='col-md-12'>
+                <form class='form-inline' action='teachers_view.php' method='POST' id='search' style='margin-top: 15px'>
+                    <div class='form-group'>", select_data($year_array, 'academic_year', $year, 100), "</div>
+                    <div class='form-group'>", select_data($term_array, 'academic_term', $term, 100), "</div>
+                    <div class='form-group'>", select_data($type_array, 'exam_type', $exam, 100), "</div>
+                    <div class='form-group'>", select_data($class_array, 'class_name', $class, 100), "</div>
+                    <div class='form-group'>", select_data($subject_array, 'exam_subject', $name, 100, TRUE), "</div>
+                    <div class='form-group'>
+                      <button class='btn btn-primary btn-block w3-padding-medium' form='search' type='submit' name='submit'> <i class='fa fa-search fa-fw'></i> Search </button>
+                    </div>
+                </form>
+              </div>
+            </div><br />";
           if (isset($_POST['submit'])) {
             unset($_POST['submit']);
             $records = $db->search_by_multiple($con, "exams", $fields, $_POST, 'exam_subject');
@@ -61,8 +64,7 @@
     }
 
 
-    echo "<div class='container'>
-            <div class='table-responsive'>
+    echo "<div class='table-responsive'>
               <table class='w3-table w3-striped w3-hoverable' align='center' cellspacing='5'>
                 <thead>
                   <tr class='w3-green'>";
