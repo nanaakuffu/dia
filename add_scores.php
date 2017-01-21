@@ -172,18 +172,23 @@
               // Update the data
               $save_data = $db->update_data($con, $_POST, "exams", "exam_id", $_POST['exam_id']);
 
-              // Update the average score for the new entered data
-              $db->update_average($con, 'exams', $avg_criteria);
+              if ($save_data) {
+                // Update the average score for the new entered data
+                $db->update_average($con, 'exams', $avg_criteria);
 
-              $_SESSION['academic_year'] = $_POST['academic_year'];
-              $_SESSION['academic_term'] = $_POST['academic_term'];
-              $_SESSION['exam_type'] = $_POST['exam_type'];
-              $_SESSION['exam_subject'] = $_POST['exam_subject'];
-              $_SESSION['class_name'] = $_POST['class_name'];
+                $_SESSION['academic_year'] = $_POST['academic_year'];
+                $_SESSION['academic_term'] = $_POST['academic_term'];
+                $_SESSION['exam_type'] = $_POST['exam_type'];
+                $_SESSION['exam_subject'] = $_POST['exam_subject'];
+                $_SESSION['class_name'] = $_POST['class_name'];
 
-              unset($_SESSION['update_score']);
-              unset($_SESSION['id']);
-              header("Location: teachers_view.php");
+                unset($_SESSION['update_score']);
+                unset($_SESSION['id']);
+                header("Location: teachers_view.php");
+              } else {
+                $_SESSION['message'] = "<li><i class='fa-li fa fa-check-square'></i>".UPDATE_ERROR."</li>";
+                include_once 'teachers_view.php';
+              }
               break;
 
             default:
@@ -196,10 +201,12 @@
                 $_SESSION['exam_type'] = $_POST['exam_type'];
                 $_SESSION['exam_subject'] = $_POST['exam_subject'];
                 $_SESSION['class_name'] = $_POST['class_name'];
-                
+
                 header("Location: teachers_view.php");
               } else {
-                echo DELETE_ERROR;
+                $_SESSION['message'] = "<li><i class='fa-li fa fa-check-square'></i>".DELETE_ERROR."</li>";
+                include_once 'teachers_view.php';
+                // echo DELETE_ERROR;
               }
               // Update the average score for the new entered data
               break;
