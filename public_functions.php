@@ -440,19 +440,19 @@
           $grade = 'A';
           break;
 
-        case 80 <= $score and $score <= 89:
+        case 80 <= $score and $score < 90:
           $grade = 'B';
           break;
 
-        case 70 <= $score and $score <= 79:
+        case 70 <= $score and $score < 80:
           $grade = 'C';
           break;
 
-        case 60 <= $score and $score <= 69:
+        case 60 <= $score and $score < 70:
           $grade = 'D';
           break;
 
-        case 50 <= $score and $score <= 59:
+        case 50 <= $score and $score < 60:
           $grade = 'E';
           break;
 
