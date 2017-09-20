@@ -1,3 +1,11 @@
+function myFunction() {
+    var x = document.getElementById("demo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
 
 function addscores(y, z) {
     var y_value;
@@ -58,7 +66,7 @@ function getstudent(value) {
 }
 
 function verify_head() {
-  if ( document.getElementById('head').checked == true) {
+  if ( document.getElementById('head').checked == true ) {
     document.getElementById('department').disabled = false;
   } else {
     document.getElementById('department').disabled = true;

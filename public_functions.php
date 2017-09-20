@@ -4,29 +4,45 @@
       echo "<!DOCTYPE html>
             <html lang='en-US'>
             <head>
-                <meta charset='utf-8'>
-                <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-                <meta name='viewport' content='width=device-width, initial-scale=1'>
-                <meta name='description' content=''>
-                <meta name='author' content=''>
+              <meta charset='utf-8'>
+              <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+              <meta name='viewport' content='width=device-width, initial-scale=1'>
+              <meta name='description' content=''>
+              <meta name='author' content=''>
 
-                <title> $title </title>
+              <title> $title </title>
 
-                <!-- Bootstrap Core CSS -->
-                <link href='static/css/bootstrap.min.css' rel='stylesheet'>
+              <!-- Bootstrap Core CSS -->
+              <link href='static/css/bootstrap.min.css' rel='stylesheet'>
 
-                <!-- Custom CSS -->
-                <link href='static/css/modern-business.css' rel='stylesheet'>
-                <link href='static/css/w3.css' rel='stylesheet'>
+              <!-- bootstrap-datepicker CSS -->
+              <link href='static/css/bootstrap-datepicker3.min.css' rel='stylesheet'>
 
-                <!-- Custom Fonts -->
-                <link href='static/font-awesome/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
-                <style>
-                  a:hover, a:visited, a:link, a:active
-                  {
-                    text-decoration: none;
-                  }
-                </style>
+              <!-- bootstrap-dataTables CSS -->
+              <link href='static/css/dataTables.bootstrap.css' rel='stylesheet'>
+              <link href='static/css/jquery.dataTables.min.css' rel='stylesheet'>
+
+              <!-- Custom CSS -->
+              <link href='static/css/modern-business.css' rel='stylesheet'>
+              <link href='static/css/w3.css' rel='stylesheet'>
+              <link href='static/css/dia.css' rel='stylesheet'>
+
+              <!-- Custom Fonts -->
+              <link href='static/font-awesome/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+              <link href='static/css/fonts.css' type='text/css' rel='stylesheet'>
+              <style>
+                a:hover, a:visited, a:link, a:active
+                {
+                  text-decoration: none;
+                }
+                html, body {
+                  font-family: Roboto, 'Open Sans', Arvo, Bitter, 'Sans Serif', Arial;
+                }
+
+                .bitterlabel {
+                  font-family: Bitter;
+                }
+              </style>
             </head>
             <body>";
     }
@@ -54,7 +70,7 @@
 
       echo "<!-- Navigation -->
         <nav class='navbar navbar-inverse navbar-fixed-top' role='navigation'>
-            <div class='container'>
+          <div class='container'>
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class='navbar-header'>
                 <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1'>
@@ -63,7 +79,7 @@
                     <span class='icon-bar'></span>
                     <span class='icon-bar'></span>
                 </button>
-                <a class='navbar-brand' href='index.php'> <i class='fa fa-home fa-fw'></i> DIA </a>
+                <a class='navbar-brand bitterlabel' href='index.php'> <i class='fa fa-home fa-fw'></i> DIA </a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
@@ -72,23 +88,28 @@
                         <a href='#' class='dropdown-toggle' data-toggle='dropdown'><i class='fa fa-graduation-cap fa-fw'></i> Student <b class='glyphicon glyphicon-menu-down'></b></a>
                         <ul class='dropdown-menu'>";
                             if ($_SESSION['is_admin'] == 1 or $_SESSION['is_head'] == 1 or $_SESSION['is_form_teacher'] == 1) {
-                                echo "<li><a href='add_student.php'><i class='fa fa-fw fa-user-md'></i> Add New Student </a></li>";
+                                echo "<li><a href='add_student.php'><span class='glyphicon glyphicon-user'></span> Add New Student </a></li>";
                                 echo "<li><a href='display_students.php'><i class='fa fa-fw fa-edit'></i> View and Edit Students </a></li>";
-                                echo "<li class='divider'></li>";
-                            }
-                      echo "<li>
-                                <a href='add_scores.php'><i class='fa fa-fw fa-plus'></i> Add Student Score </a>
-                            </li>
-                            <li>
-                                <a href='teachers_view.php'><i class='fa fa-fw fa-desktop'></i> Subject Teacher's View </a>
-                            </li>";
-                            if ( $_SESSION['is_admin'] == 1 or $_SESSION['is_head'] == 1 or $_SESSION['is_form_teacher'] == 1 ) {
-                              echo "<li><a href='view_class_scores.php'><i class='fa fa-fw fa-desktop'></i> View Student Scores </a></li>";
+                                // echo "<li class='divider'></li>";
                             }
                   echo "</ul>
                     </li>
                     <li class='dropdown'>
-                        <a href='#' class='dropdown-toggle' data-toggle='dropdown'><i class='fa fa-fw fa-gears'></i> Settings <b class='glyphicon glyphicon-menu-down'></b></a>
+                        <a href='#' class='dropdown-toggle' data-toggle='dropdown'><i class='fa fa-tasks'></i> Scores <b class='glyphicon glyphicon-menu-down'></b></a>
+                        <ul class='dropdown-menu'>
+                            <li>
+                                <a href='add_scores.php'><i class='fa fa-fw fa-plus'></i> Add Student Score </a>
+                            </li>
+                            <li>
+                                <a href='teachers_view.php'><i class='fa fa-fw fa-desktop'></i> Teacher's Score View </a>
+                            </li>";
+                            if ( $_SESSION['is_admin'] == 1 or $_SESSION['is_head'] == 1 or $_SESSION['is_form_teacher'] == 1 ) {
+                              echo "<li><a href='view_class_scores.php'><i class='fa fa-fw fa-navicon'></i> Student Score View </a></li>";
+                            }
+                  echo "</ul>
+                    </li>
+                    <li class='dropdown'>
+                        <a href='#' class='dropdown-toggle' data-toggle='dropdown'><i class='fa fa-fw fa-gear'></i> Settings <b class='glyphicon glyphicon-menu-down'></b></a>
                         <ul class='dropdown-menu'>
                             <li>";
                             if ($_SESSION['is_admin'] == 1 or $_SESSION['is_head'] == 1) {
@@ -98,30 +119,42 @@
                             <li>";
                             if ($_SESSION['is_admin'] == 1) {
                                 echo "<a href='display_users.php'><i class='fa fa-fw fa-edit'></i> View and Edit Users </a>";
-                                echo "<a href='down_page.php'><i class='fa fa-fw fa-database'></i> Back Up Database </a>";
                             }
                       echo "</li>
+                            <li>
+                                <a href='change_password.php'><i class='fa fa-fw fa-key'></i> Change Password </a>
+                            </li>
+                            <li class='divider'></li>
+                            <li>";
+                            if ($_SESSION['is_admin'] == 1) {
+                                echo "<a href='down_page.php'><i class='fa fa-fw fa-database'></i> Back Up Database </a>";
+                            }
+                      echo  "</li>
                             <li>
                                 <a href='settings.php'><i class='fa fa-fw fa-plus-square'></i> Add Subject</a>
                             </li>
                             <li>
-                                <a href='change_password.php'><i class='fa fa-fw fa-key'></i> Change Password </a>
+                                <a href='reset_security.php'><i class='fa fa-fw fa-lock'></i> Add Login Security </a>
+                            </li>
+                            <li class='divider'></li>
+                            <li>
+                                <a href='add_file.php'><i class='fa fa-fw fa-file'></i> Upload Document </a>
                             </li>
                             <li>
-                                <a href='reset_security.php'><i class='fa fa-fw fa-lock'></i> Add Login Security </a>
+                                <a href='display_uploaded_files.php'><i class='fa fa-fw fa-file'></i> Dsiplay Upload History </a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href='users_update.php?str_1={$user}&up={$up_2}'><span class='glyphicon glyphicon-user'></span> $full_name </a>
+                        <a href='users_update.php?str_1={$user}&up={$up_2}'><i class='fa fa-fw fa-user'></i> $full_name </a>
                     </li>
                     <li>
                         <a href='log_out.php'> Log Out <i class='fa fa-sign-out fa-fw'></i> </a>
                     </li>
                 </ul>
-                </div>
+              </div>
                 <!-- /.navbar-collapse -->
-            </div>
+          </div>
         </nav>";
     }
 
@@ -141,39 +174,86 @@
       return $get_class;
     }
 
-    function get_subject($class_name)
+    function create_subject_array($class_name)
     {
-      $sub_array = array();
+      $subject_array = array();
+      // Loop through the sessions for the class name
       foreach ($_SESSION as $key => $value) {
+        // Get the subjects that corresponds the class name
         if (preg_match('/subject/i', $key)) {
           if ($_SESSION[$key] != 'None') {
-            $sub = implode(" ", explode("_", $key));
-            if (preg_match("/{$class_name}/i", $sub)) {
-              $sub_array = explode(",", $value);
-              foreach ($sub_array as $key => $value) {
-                $sub_array[$key] = trim($value);
+            $subject_class = implode(" ", explode("_", $key));
+            if (preg_match("/{$class_name}/i", $subject_class)) {
+              $subject_array = explode(",", $value);
+              foreach ($subject_array as $key => $value) {
+                $subject_array[$key] = trim($value);
               }
-              return $sub_array;
+              return $subject_array;
             }
           }
         }
       }
-      return $sub_array;
+      return $subject_array;
+    }
+
+    function add_footer()
+    {
+      echo "<footer class='footer navbar-fixed-bottom text-center'>
+              <div class='container'>
+                <span class='text-muted'><strong>Copyright &copy; ", date("Y"), "- Created by DatalabGH. &nbsp; </strong> All rights
+                reserved.</span>
+              </div>
+            </footer>";
     }
 
     function create_footer()
     {
-      echo "    <script src='static/js/jquery.js'></script>
-                <script src='static/js/jquery-3.1.1.min.js'></script>
-                <script src='static/js/bootstrap.min.js'></script>
-                <script src='static/js/dia.js'></script>
-            </body>
-            </html>";
+      // add_footer();
+      echo "  <script src='static/js/jquery-3.1.1.min.js'></script>
+              <script src='static/js/bootstrap.min.js'></script>
+              <script src='static/js/bootstrap-datepicker.min.js'></script>
+              <script src='static/js/jquery.dataTables.min.js'></script>
+              <script src='static/js/dataTables.bootstrap.min.js'></script>
+              <script src='static/js/dia.js'></script>
+              <script type='text/javascript'>
+                $(function () {
+                  $('#display_table').DataTable({
+                    'paging': true,
+                    'lengthChange': false,
+                    'searching': true,
+                    'ordering': true,
+                    'info': true,
+                    'autoWidth': true
+                  });
+                  $('#file_table').DataTable({
+                    'paging': true,
+                    'lengthChange': false,
+                    'searching': true,
+                    'ordering': true,
+                    'info': true,
+                    'autoWidth': true
+                  });
+                  $('#user_table').DataTable({
+                    'paging': true,
+                    'lengthChange': false,
+                    'searching': false,
+                    'ordering': true,
+                    'info': true,
+                    'autoWidth': false
+                  });
+                  $('#form_datetime').datepicker({
+                    format: 'MM-dd-yyyy',
+                    autoclose: true
+                  });
+                });
+              </script>
+          </body>
+          </html>";
     }
 
-    function select_data($data_array, $select_name, $select_value, $width=20, $id = '', $sorted = FALSE, $disabled = '')
+    function select_data($data_array, $select_name, $select_value, $width=100, $id = '', $sorted = FALSE, $disabled = '')
     {
-      echo "<select class='w3-select w3-border w3-round' name='{$select_name}' id='{$id}' style='width:{$width}%' $disabled>\n";
+      echo "<select class='form-control' name='{$select_name}' id='{$id}' style='width:{$width}%' $disabled>\n";
 
       // Sort the array
       if ($sorted) {
@@ -190,6 +270,40 @@
       echo "</select>\n";
     }
 
+    function create_toggle_switch($control_name, $control_value, $checked=FALSE)
+    {
+      $checked_value = ($checked) ? "checked" : "" ;
+      echo "<div class='checkbox'>
+              <label class='switch'>
+                <input type='checkbox' name='$control_name' value='1' $checked_value>
+                <div class='slider round'><span> $control_value </span></div>
+              </label>
+            </div>";
+    }
+
+    function secure_data_value($data_value)
+    {
+      $data_value = trim($data_value);
+      $data_value = stripslashes($data_value);
+      $data_value = strip_tags($data_value);
+      $secrued_value = htmlspecialchars($data_value);
+
+      return $secured_value;
+    }
+
+    function secure_data_array($data_array)
+    {
+      $secured_array = array();
+      if (!is_array($data_array)) { // Data is not an array, hemce make it one.
+        $secured_array[] = secure_data_value($data_array);
+      } else { // Data is an array, hence valudate each element of the array.
+        foreach ($data_array as $key => $value) {
+          $secured_array[$key] = secure_data_value($value);
+        }
+      }
+      return $secured_array;
+    }
+
     function get_date_form($date_year, $date_month, $date_day, $date_to_use, $ywidth=20, $mwidth=30, $dwidth=15)
     {
         $monthName = array(1=> "January", "February", "March",
@@ -202,46 +316,49 @@
         /* Build selection list for month */
         $todayMO = date("m",$today); #get the month from $today
         echo "<select class='w3-select w3-border w3-round' name='{$date_month}' style='width:{$mwidth}%'>\n";
-                  for ($n=1;$n<=12;$n++)
-                  {
-                    echo "<option value=$n";
-                    if ($todayMO == $n) #adds selected attribute if today
-                    {
-                      echo " selected";
-                    }
-                    echo "> $monthName[$n] </option>\n";
-                  }
-                  echo "</select>\n";
 
-                  /* build selection list for the day */
-                  $todayDay= date("d",$today);
-                  #get the day from $today
-                  echo "<select class='w3-select w3-border w3-round' name='{$date_day}' style='width:{$dwidth}%'>\n";
-                  for ($n=1;$n<=31;$n++)
-                  {
-                    echo " <option value=$n";
-                    if ($todayDay == $n )
-                    {
-                      echo " selected";
-                    }
-                    echo "> $n </option>\n";
-                  }
-                  echo "</select>\n";
+    		for ($n=1;$n<=12;$n++)
+    		{
+    			echo "<option value=$n";
+    			if ($todayMO == $n) #adds selected attribute if today
+    			{
+    			  echo " selected";
+    			}
+    			echo "> $monthName[$n] </option>\n";
+    		}
+    		echo "</select>\n";
 
-                  /* build selection list for the year */
-                  $startYr = date("Y", $today);
-                  #get the year from $today
-                  echo "<select class='w3-select w3-border w3-round' name='{$date_year}' style='width:{$ywidth}%'>\n";
-                  for ($n=1950;$n<=($startYr+50);$n++)
-                  {
-                    echo " <option value=$n";
-                    if ($startYr == $n )
-                    {
-                      echo " selected";
-                    }
-                    echo "> $n </option>\n";
-                  }
-                  echo "</select>\n";
+    		/* build selection list for the day */
+    		$todayDay= date("d",$today);
+    		#get the day from $today
+    		echo "<select class='w3-select w3-border w3-round' name='{$date_day}' style='width:{$dwidth}%'>\n";
+
+    		for ($n=1;$n<=31;$n++)
+    		{
+    			echo " <option value=$n";
+    			if ($todayDay == $n )
+    			{
+    			  echo " selected";
+    			}
+    			echo "> $n </option>\n";
+    		}
+    		echo "</select>\n";
+
+    		/* build selection list for the year */
+    		$startYr = date("Y", $today);
+    		#get the year from $today
+    		echo "<select class='w3-select w3-border w3-round' name='{$date_year}' style='width:{$ywidth}%'>\n";
+
+    		for ($n=1950;$n<=($startYr+50);$n++)
+    		{
+    			echo " <option value=$n";
+    			if ($startYr == $n )
+    			{
+    			  echo " selected";
+    			}
+    			echo "> $n </option>\n";
+    		}
+    		echo "</select>\n";
     }
 
     function encrypt_data($string)
@@ -327,17 +444,17 @@
       return FALSE;
     }
 
-    function create_log_id($date)
+    function create_id($date, $prelim, $delim='_')
     {
-      $log_date = new DateTime($date);
-      $log_date = date_format($log_date, "y-m-d");
-      $log_num = substr(strrev(time()), 0, 4);
+      $_date = new DateTime($date);
+      $l_date = date_format($_date, "y-m-d");
+      $l_num = substr(strrev(time()), 0, 4);
 
-      $login_date = explode("-", $log_date);
+      $id_date = explode("-", $l_date);
 
-      $log_id = "log_".$login_date[2].$login_date[1].$login_date[0]."_".$log_num;
+      $_id = $prelim.$delim.$id_date[2].$id_date[1].$id_date[0].$delim.$l_num;
 
-      return $log_id;
+      return $_id;
     }
 
     function create_student_id($birth_date, $db_num)
@@ -521,6 +638,14 @@
       $value = (is_element($lower_secondary, $class_name)) ? 'Lower Secondary' : 'Upper Secondary';
 
       return $value;
+    }
+
+    function change_string_to_date($date_string, $delim='-')
+    {
+      $new_date = explode($delim, $date_string);
+      $new_date[0] = date("m", strtotime($new_date[0]));
+
+      return $new_date;
     }
 
 ?>

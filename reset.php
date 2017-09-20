@@ -21,8 +21,17 @@
           if ($_POST['security_question'] == $rows[0]['security_question']) {
             if ($_POST['answer'] == decrypt_data($rows[0]['answer'])) {
 
+              // Set the date and time you are doing this
+              $today_date = date('y-m-d');
+              $today_time = date('h:i:s');
+              $log_id = $db->get_last_logged_in($con, $_POST['user_name']);
+
               $user_sql = "UPDATE users SET status='0' WHERE user_name ="."'".$_POST['user_name']."'";
               $result = mysqli_query($con, $user_sql) or die("Couldn't execute query.");
+              if ($result) {
+                $log_sql = "UPDATE login_details SET logout_date='$today_date', logout_time='$today_time' WHERE log_id='$log_id'";
+                $log_result = mysqli_query($con, $log_sql) or die("Couldn't execute query.");
+              }
 
               $db->close_connection($con);
               $message = "<i class='fa fa-check-square-o'></i> Your answer has been verified. Please

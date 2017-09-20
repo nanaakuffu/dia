@@ -8,7 +8,7 @@
     if (isset($_POST['login'])) {
         $error = "";
         foreach ($_POST as $key => $value) {
-            /* Check for wrong input data */
+            /* Check for wrong data */
             $value = trim($value);
             if (preg_match("/first/i", $key)) {
               if (!ereg("^[A-Za-z].*", $value)) {
@@ -46,7 +46,7 @@
           $errors = explode(",", $error);
           $message = "";
           foreach ($errors as $key => $value) {
-            $message .="<i class='fa fa-fw fa-close'></i>".$value." Please try again.<br>";
+            $message .="<li><i class='fa-li fa fa-check-square'></i>".$value." Please try again.</li>";
           }
           $_SESSION['message'] = $message;
           if (isset($_POST['user_up'])) {
@@ -66,7 +66,7 @@
           $result = mysqli_query($con, $SQL);
           $num = mysqli_num_rows($result);
           if ($num > 0 and !isset($_POST['user_up'])) {   //user name already exists
-            $_SESSION['message'] = "User Name already exists";
+            $_SESSION['message'] = "<li><i class='fa-li fa fa-check-square'></i>User Name already exists</li>";
             include_once 'users_page.php';
           } else {
             // This is an array that holds the keys of the wanted field names
@@ -74,6 +74,8 @@
 
             /* Removes unwanted field names that came from the form */
             $_POST = filter_array($_POST, $field_names_array);
+
+            $_POST = secure_data_array($_POST);
 
             if (isset($_SESSION['update_user'])) {
               $save_data = $db->update_data($con, $_POST, "users", "user_name", $_POST['user_name']);
@@ -86,7 +88,7 @@
               /* Encrypt the password data */
               $_POST['user_password'] = encrypt_data($_POST['user_password']);
               $_POST['added_by'] = $_SESSION['full_name'];
-              $save_data = $db->add_new($con, $_POST, "users");
+              $save_data = $db->add_new_data($con, $_POST, "users");
             }
 
             if ($save_data) {

@@ -22,19 +22,15 @@
 
     echo "<br /><div class='container'>
           <div class='row'>
-          <div class='col-sm-3'>",
-            encryption("password", "Nana Baah Akuffu"), "<br>",
-            encryption("password", "Danquah"), "<br>",
-            substr("Nana Baah", 1, 1),
-            decrypt_data("70131113011351132421213882"),
-          "</div>
+          <div class='col-sm-3'>
+          </div>
           <div class='col-sm-6'>
             <div class='panel panel-default'>
               <div class='panel-heading w3-green'>
                 <h5><i class='fa fa-fw fa-birthday-cake'></i> ", date('F', time()), " Borns </h5>
               </div>
               <div class='panel-body'>
-                <table class='table-responsive w3-table w3-striped w3-hoverable' cellpadding='8' cellspacing='10'>
+                <table class='table table-hover table-responsive' cellpadding='8' cellspacing='10'>
                   <tr class='w3-red'>
                     <th> Full Name </th>
                     <th> Class </th>

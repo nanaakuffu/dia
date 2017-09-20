@@ -15,7 +15,7 @@
 
     function __construct()
     {
-      // Loading database details and initializng class
+      // Loading data details and initializng class
       require_once("public_vars.php");
       $this->host = DB_HOST;
       $this->account = DB_USER_NAME;
@@ -27,9 +27,13 @@
     function connect_to_db()
     {
       // Establishing data connection
-      $sconnect = mysqli_connect($this->host, $this->account, $this->password, $this->db_name)
-                  or die("Database Connection Failed! <br>"."Reason: ".mysqli_connect_error());
-      return $sconnect;
+      // $sconnect = mysqli_connect($this->host, $this->account, $this->password, $this->db_name);
+      if (!mysqli_connect($this->host, $this->account, $this->password, $this->db_name)) {
+        die( include_once 'errors.php');
+      } else {
+        $sconnect = mysqli_connect($this->host, $this->account, $this->password, $this->db_name);
+        return $sconnect;
+      }
     }
 
     function get_field_names($connection, $table_name)
@@ -53,7 +57,7 @@
       return $field_list;
     }
 
-    function add_new($connection, $form_data, $table_name)
+    function add_new_data($connection, $form_data, $table_name)
     {
       if(!is_array($form_data))
       {
@@ -63,8 +67,6 @@
 
       foreach($form_data as $field => $value)
       {
-        $form_data[$field] = trim($form_data[$field]);
-        $form_data[$field] = strip_tags($form_data[$field]);
         $form_data[$field] = mysqli_real_escape_string($connection, $form_data[$field]);
 
         $field_array[] = $field;
@@ -87,8 +89,6 @@
 
       if (is_array($form_data)) {
         foreach ($form_data as $field => $value) {
-          $value = trim($value);
-          $value = strip_tags($value);
           $value = mysqli_real_escape_string($connection, $value);
 
           $query .= "$field ="."'".$value."'".", ";
@@ -122,10 +122,27 @@
       }
     }
 
-    function display_data($connection, $table_name, $field_list, $order_field='')
+    function display_data($connection, $table_name, $field_list, $order_field='', $privelege)
     {
       $fields = implode(",", $field_list);
-      $query = (strlen($order_field) > 0) ? "SELECT $fields FROM $table_name ORDER BY $order_field ASC" : "SELECT $fields FROM $table_name" ;
+
+      switch ($privelege) {
+        case '*':
+          $query = "SELECT $fields FROM $table_name";
+          break;
+
+        case 'Level':
+          $query = "SELECT $fields FROM $table_name WHERE class_name='AS Level' OR class_name='A Level'";
+          break;
+
+        default:
+          $query = "SELECT $fields FROM $table_name WHERE class_name="."'".$privelege."'";
+          break;
+      }
+
+      if (strlen($order_field) > 0) {
+        $query .= " ORDER BY $order_field ASC";
+      }
 
       $result = mysqli_query($connection, $query);
       $records = mysqli_num_rows($result);
@@ -241,10 +258,26 @@
       }
     }
 
-    function view_array_data()
+    function get_last_logged_in($connection, $user_name)
     {
-      # code...
+      $sql = "SELECT log_id, login_date, login_time FROM login_details WHERE user_name="."'".$user_name."' ORDER BY login_date DESC, login_time DESC";
+
+      $log_result = mysqli_query($connection, $sql);
+      $log_number = mysqli_num_rows($log_result);
+
+      if ($log_number > 0) {
+        while ($records = mysqli_fetch_assoc($log_result)) {
+          $logs[] = $records;
+        }
+
+        return $logs[0]['log_id'];
+      }
     }
+
+    // function view_array_data()
+    // {
+    //   # code...
+    // }
 
     function create_data_array($connection, $table_name, $field_name, $distinct = FALSE, $sorted = FALSE)
     {
@@ -419,6 +452,7 @@
         foreach ($rows as $key => $value) {
           $user_array = filter_array($value, $fields);
         }
+
         return $user_array;
       } else {
         return $user_array;
@@ -477,7 +511,7 @@
 
   /**
    * This class is responsible for all the legal things in the
-   * entire system. It grants access level privileges to all kinds of users.
+   * entire system. It grants access level privileges to all of users.
    * This is very necessary for security and report logs.
    */
   class Priveleges
@@ -517,10 +551,10 @@
       $year_8_subject = $user_array['year_8_subject'];
       $year_9 = $user_array['teaches_year_9'];
       $year_9_subject = $user_array['year_9_subject'];
-      $ig_1 = $user_array['teaches_ig_1'];
-      $ig_1_subject = $user_array['ig_1_subject'];
-      $ig_2 = $user_array['teaches_ig_2'];
-      $ig_2_subject = $user_array['ig_2_subject'];
+      $ig_1 = $user_array['teaches_igcse_1'];
+      $ig_1_subject = $user_array['igcse_1_subject'];
+      $ig_2 = $user_array['teaches_igcse_2'];
+      $ig_2_subject = $user_array['igcse_2_subject'];
       $as_level = $user_array['teaches_as_level'];
       $as_level_subject = $user_array['as_level_subject'];
       $a_level = $user_array['teaches_a_level'];
@@ -540,7 +574,7 @@
 
     function is_admin()
     {
-      $value = ($this->is_admin) ? TRUE : FALSE ;
+      $value = ($this->is_admin == '1' ) ? TRUE : FALSE ;
       return $value;
     }
 

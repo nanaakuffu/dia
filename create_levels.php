@@ -56,10 +56,12 @@
           /* Removes unwanted field names that came from the form */
           $_POST = filter_array($_POST, $field_names_array);
 
+          $_POST = secure_data_array($_POST);
+
           if (isset($_SESSION['update_access'])) {
             $save_data = $db->update_data($con, $_POST, "priveleges", "user_name", $_POST['user_name']);
           } else {
-            $save_data = $db->add_new($con, $_POST, "priveleges");
+            $save_data = $db->add_new_data($con, $_POST, "priveleges");
           }
 
           if ($save_data) {

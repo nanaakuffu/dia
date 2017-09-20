@@ -10,6 +10,25 @@ Description: Displays a form to upload a file -->
       <li>When the path to the picture file shows in the text
         field, click the Upload Picture button.</li>
     </ol>
+    <!-- <?php
+      include_once 'db_functions.php';
+      include_once 'public_functions.php';
+
+      $db = new Database();
+      $con = $db->connect_to_db();
+      $user_array = $db->get_user_priveleges($con, 'Admin');
+
+      $priv = new Priveleges($user_array);
+
+      $dep_name = $priv->is_admin();
+
+      // echo "<pre>", var_dump($user_array), "</pre>";
+      if ($dep_name == 1) {
+        echo "TRUE";
+      } else {
+        echo "FALSE";
+      }
+    ?> -->
     <div align="center"><hr>
       <form enctype="multipart/form-data" action="file_upload.php" method="POST">
         <input type="hidden" name="MAX_FILE_SIZE" value="500000">

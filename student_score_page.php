@@ -89,7 +89,7 @@
                       echo "<input class='form-control' type='text' id='remark' name='class_name' value='{$class_name}'
                                readonly>";
                     } else {
-                      echo "<select class='w3-select w3-border w3-round' name='class_name' onchange='getstudent(this.value)'>
+                      echo "<select class='form-control' name='class_name' onchange='getstudent(this.value)'>
                                 <option value=''> Please select a class </option>
                                 <option value='Year 7'> Year 7 </option>
                                 <option value='Year 8'> Year 8 </option>
@@ -106,7 +106,7 @@
                       echo "<input class='form-control' type='text' id='remark' name='student_full_name' value='{$full_name}'
                                readonly>";
                     } else {
-                      echo "<select class='w3-select w3-border w3-round' name='student_full_name' id='second_choice'>
+                      echo "<select class='form-control' name='student_full_name' id='second_choice'>
                                 <option> Student Full Name </option>
                             </select>";
                     }
@@ -127,7 +127,7 @@
                       <input class='form-control' type='text' id='grades' name='grade' value='{$grade}' readonly></div>
                   <div class='form-group'><label class='w3-validate' for='remark'>Remark : </label><br />
                       <input class='form-control' type='text' id='remarks' name='remark' value='{$remarks}' readonly></div>
-                  <input type='hidden' name='teacher_initials' value='{$initials}'>";
+                  <input type='hidden' name='teacher_initials' value='{$initials}'><br />";
                   if (!isset($_SESSION['update_score'])) {
                     echo "<input class='btn btn-primary w3-round w3-padding-medium' type='submit' name='add_score'
                           value='Add Score'>";

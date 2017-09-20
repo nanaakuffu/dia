@@ -34,7 +34,7 @@
 
           unset($_POST['user_type']);
 
-          $save_data = $db->add_new($con, $_POST, 'user_type');
+          $save_data = $db->add_new_data($con, $_POST, 'user_type');
           if ($save_data) {
             header("Location: index.php");
           }
@@ -71,7 +71,7 @@
 
           $_POST = filter_array($_POST, $field_names_array);
 
-          $save_data = $db->add_new($con, $_POST, 'subjects');
+          $save_data = $db->add_new_data($con, $_POST, 'subjects');
           if ($save_data) {
             include_once "settings_page.php";
           }
@@ -107,7 +107,7 @@
 
           unset($_POST['exams_type']);
 
-          $save_data = $db->add_new($con, $_POST, 'exam_type');
+          $save_data = $db->add_new_data($con, $_POST, 'exam_type');
           if ($save_data) {
             header("Location: index.php");
           }

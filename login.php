@@ -11,6 +11,8 @@
         $con = $db->connect_to_db();
         $user_array = $db->get_user_priveleges($con, $_POST['user_name']);
 
+        // echo "<pre>",var_dump($user_array),"</pre>";
+
         $user_sql = "SELECT * FROM users WHERE user_name = "."'".$_POST['user_name']."'";
 
         $result = mysqli_query($con, $user_sql) or die("Couldn't execute query.");
@@ -28,7 +30,7 @@
 
           if ($num_available > 0) { // Password did match
             if ($rows[0]['status'] == 0) {
-              if (sizeof($user_array) > 0 ) {
+              if (sizeof($user_array) > 0 ) { // The user's access leve is set
                 $full_name = $rows[0]['last_name'].", ".$rows[0]['first_name']." ".$rows[0]['middle_name'];
 
                 $_SESSION = $user_array;
@@ -39,7 +41,7 @@
 
                 $today_date = date('y-m-d');
                 $today_time = date('h:i:s');
-                $log_id = create_log_id($today_date);
+                $log_id = create_id($today_date, "log");
                 $_SESSION['log_id'] = $log_id;
                 $_SESSION['login_time'] = time();
 
@@ -53,37 +55,37 @@
 
                 $db->close_connection($con);
                 header("Location: index.php");
-              } else {
+              } else { // Access level not set. Redirect complaint to the administrator
                 $message = "<i class='fa fa-fw fa-close'></i> Your user account is inactive.
                             Please contact the system administrator about this message.";
                 $_SESSION['message'] = $message;
                 include_once 'login_page.php';
                 exit();
               }
-            } else {
+            } else { // User is already logged in. So you either ask the administrator to log you out or ask him how
               $db->close_connection($con);
               $message = "<i class='fa fa-fw fa-close'></i> User is already logged in. If you are sure this
-                          is you, please goto <a href='reset.php'> RESET LOGIN </a>
+                          is you, please click <a href='reset.php'> HERE </a>
                           to reset your login status.";
               $_SESSION['message'] = $message;
               include_once 'login_page.php';
               exit();
             }
-          } else {
+          } else { // Password typed does not match what is on the database
             $db->close_connection($con);
             $message = "<i class='fa fa-fw fa-close'></i> Password does not match your user name!";
             $_SESSION['message'] = $message;
             include_once 'login_page.php';
             exit();
           }
-        } else {
+        } else { // User name was not found.
           $db->close_connection($con);
           $message = "<i class='fa fa-fw fa-close'></i> Password does not match your user name!";
           $_SESSION['message'] = $message;
           include_once 'login_page.php';
           exit();
         }
-    } else {
+    } else { // No data hase been submitted yet.
       include 'login_page.php';
       exit();
     }

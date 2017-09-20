@@ -12,10 +12,9 @@
   } else {
       $errors = [];
       $get_class = "";
-      $sub_array = array();
 
       $class_name = get_class_name($_POST['class_name']);
-      $sub_array = get_subject($_POST['class_name']);
+      $subject_array = create_subject_array($_POST['class_name']);
 
       foreach($_POST as $field=>$value) {
          /* Checking for empty data */
@@ -28,7 +27,7 @@
              } elseif ($value > 40) {
                $errors[] = get_column_name($field). " cannot be more than 40.";
              } elseif (strlen(strval($value)) > 5) {
-               $errors[] = get_column_name($field). " should not be more than 5 characters.";
+               $errors[] = get_column_name($field). " should not be more than 5 characters including the dot.";
              }
            }
 
@@ -99,7 +98,7 @@
 
            if ($field == 'exam_subject') {
              if (!$_SESSION['is_admin'] and !$_SESSION['is_head']) {
-               if (!is_element($sub_array, $_POST[$field])) {
+               if (!is_element($subject_array, $_POST[$field])) {
                  $errors[] = "You cannot enter result of a subject you do not teach.";
                }
              }
@@ -130,23 +129,37 @@
           // Do some minor data additions: Add teachers signature
           $_POST['teacher_initials'] = $_SESSION['initials'];
 
+          $user_name = $_SESSION['user_name'];
+          $activity_date = date('y-m-d');
+          $activty_id = create_id($activity_date, "act");
+          $activity_time = date('h:i:s');
+
           // Get class average
           $avg_fields = array('academic_year', 'academic_term', 'exam_type', 'exam_subject', 'class_name');
           $avg_criteria = filter_array($_POST, $avg_fields);
 
-          // Actually save the date
           switch ($_POST['add_score']) {
+            // Actually save the data from the form.
             case 'Add Score':
-              /* Removes unwanted field names that came from the form */
+              /* Remove unwanted field names that came from the form */
               $_POST = filter_array($_POST, $field_names_array);
 
+              $_POST = secure_data_array($_POST);
+
+              // Clean up the data
               $fields = array('academic_year', 'academic_term', 'exam_type', 'exam_subject', 'student_full_name', 'class_name');
               $criteria = filter_array($_POST, $fields);
               $data_checked = $db->data_exists($con, "exams", $fields, $criteria);
 
               if (!$data_checked) {
                   // Add new data
-                  $save_data = $db->add_new($con, $_POST, "exams");
+                  $save_data = $db->add_new_data($con, $_POST, "exams");
+
+                  // Add the new activity
+                  $activity_details = "Added the scores of ".$_POST['student_full_name'];
+                  $act_sql = "INSERT INTO login_activity (activity_id, user_name, activity_details, activity_date, ";
+                  $act_sql .= "activity_time) VALUES ('$activity_id','$user_name', '$activity_details', '$activity_date', '$activity_time')";
+                  $result = mysqli_query($con, $act_sql) or die("Can't add activity.");
 
                   // Update the average score for the new entered data
                   $db->update_average($con, 'exams', $avg_criteria);
@@ -169,46 +182,44 @@
               /* Removes unwanted field names that came from the form */
               $_POST = filter_array($_POST, $field_names_array);
 
+              $_POST = secure_data_array($_POST);
+              
               // Update the data
               $save_data = $db->update_data($con, $_POST, "exams", "exam_id", $_POST['exam_id']);
 
-              if ($save_data) {
-                // Update the average score for the new entered data
-                $db->update_average($con, 'exams', $avg_criteria);
+              $activity_details = "Updated scores of ".$_POST['student_full_name'];
+              $act_sql = "INSERT INTO login_activity (activity_id, user_name, activity_details, activity_date, ";
+              $act_sql .= "activity_time) VALUES ('$activity_id','$user_name', '$activity_details', '$activity_date', '$activity_time')";
+              $result = mysqli_query($con, $act_sql) or die("Can't add activity.");
 
-                $_SESSION['academic_year'] = $_POST['academic_year'];
-                $_SESSION['academic_term'] = $_POST['academic_term'];
-                $_SESSION['exam_type'] = $_POST['exam_type'];
-                $_SESSION['exam_subject'] = $_POST['exam_subject'];
-                $_SESSION['class_name'] = $_POST['class_name'];
+              // Update the average score for the new entered data
+              $db->update_average($con, 'exams', $avg_criteria);
 
-                unset($_SESSION['update_score']);
-                unset($_SESSION['id']);
-                header("Location: teachers_view.php");
-              } else {
-                $_SESSION['message'] = "<li><i class='fa-li fa fa-check-square'></i>".UPDATE_ERROR."</li>";
-                include_once 'teachers_view.php';
-              }
+              $_SESSION['academic_year'] = $_POST['academic_year'];
+              $_SESSION['academic_term'] = $_POST['academic_term'];
+              $_SESSION['exam_type'] = $_POST['exam_type'];
+              $_SESSION['exam_subject'] = $_POST['exam_subject'];
+              $_SESSION['class_name'] = $_POST['class_name'];
+
+              unset($_SESSION['update_score']);
+              unset($_SESSION['id']);
+              header("Location: teachers_view.php");
               break;
 
             default:
               $delete_data = $db->delete_data($con, "exams", "exam_id", $_POST['exam_id']);
+
+              $activity_details = "Deleted the score values of ".$_POST['student_full_name'];
+              $act_sql = "INSERT INTO login_activity (activity_id, user_name, activity_details, activity_date, ";
+              $act_sql .= "activity_time) VALUES ('$activity_id','$user_name', '$activity_details', '$activity_date', '$activity_time')";
+              $result = mysqli_query($con, $act_sql) or die("Can't add activity.");
+
               if ($delete_data) {
                 $db->update_average($con, 'exams', $avg_criteria);
-
-                $_SESSION['academic_year'] = $_POST['academic_year'];
-                $_SESSION['academic_term'] = $_POST['academic_term'];
-                $_SESSION['exam_type'] = $_POST['exam_type'];
-                $_SESSION['exam_subject'] = $_POST['exam_subject'];
-                $_SESSION['class_name'] = $_POST['class_name'];
-
                 header("Location: teachers_view.php");
               } else {
-                $_SESSION['message'] = "<li><i class='fa-li fa fa-check-square'></i>".DELETE_ERROR."</li>";
-                include_once 'teachers_view.php';
-                // echo DELETE_ERROR;
+                echo DELETE_ERROR;
               }
-              // Update the average score for the new entered data
               break;
           }
 

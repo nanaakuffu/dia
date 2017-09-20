@@ -2,8 +2,45 @@
 2. Calculate the average score automatically -- done
 3. Check out for any leaking error that is unchecked. -- done-almost-all
 4. Deploy it by monday. -- done
-5. Find a way to produce the reports, both mid term and end of term. -- researching
+5. Find a way to produce the reports, both mid term and end of term. -- done with the mid term
+6. Finish the search engine --
+7. Finish the upload page with allowing editing --
 
 
 www.uq.edu.au/international
 0544347297
+
+Enoch's Email: elamptey2063@gmail.com
+
+if (preg_match("/birth/i", $field )) {
+  $current_date = date("l, j F, Y");
+  $current_month = date("n", strtotime($current_date));
+  $current_year = date("Y", strtotime($current_date));
+
+  if ($field == "birth_year") {
+    if ($value > $current_year) {
+      $errors[] = "Birth year cannot be in the future.";
+    }
+  }
+
+  if ($field == "birth_day") {
+    if ( is_element($month_days, $_POST['birth_month']) and (int)$value > 30) {
+      $errors[] = "Birth month and Birth day is not possible";
+    } elseif ((int)$_POST['birth_year']%4 != 0 and $_POST['birth_month'] == "2" and (int)$value > 28) {
+      $errors[] = "Birth month and Birth day is not possible";
+    } elseif ((int)$_POST['birth_year']%4 == 0 and $_POST['birth_month'] == "2" and (int)$value > 29) {
+      $errors[] = "Birth month and Birth day is not possible";
+    }
+  }
+}
+
+
+$office_extension = array("docx", "doc", "ppt", "pptx", "xls", "xlsx");
+                            $other_extension = array("pdf", "jpeg", "jpg", "png", "gif");
+                            $ext = explode(".", $file)[1];
+
+                            if (in_array($ext, $office_extension)) {
+                              $file_url = 'https://view.officeapps.live.com/op/embed.aspx?src=http://localhost/dia/dia_documents/$file';
+                            } else {
+                              $file_url = 'http://localhost/dia/dia_documents/$file';
+                            }

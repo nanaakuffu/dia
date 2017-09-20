@@ -64,7 +64,7 @@
             if ($_SESSION['update_sec']) {
               $save_data = $db->update_data($con, $_POST, "login_check", "user_name", $_POST['user_name']);
             } else {
-              $save_data = $db->add_new($con, $_POST, "login_check");
+              $save_data = $db->add_new_data($con, $_POST, "login_check");
             }
 
             if ($save_data) {

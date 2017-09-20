@@ -33,6 +33,7 @@
   $last_name = (isset($_POST['Update'])) ? $_POST['last_name'] : '' ;
   $birth_date = (isset($_POST['Update'])) ? $_POST['date_of_birth'] : date("l, j F, Y") ;
   $gender = (isset($_POST['Update'])) ? $_POST['gender'] : 'Male' ;
+  $date_of_birth = (isset($_POST['Update'])) ? $_POST['date_of_birth'] : '' ;
 
   echo "<br/><div class='container'>
             <div class='row'>
@@ -50,7 +51,7 @@
         echo "  <div class='w3-container w3-red'>
                     <h3> Update Student Details </h3>
                 </div>
-                <form class='w3-form w3-border w3-round' action='view_student.php' method='POST'>
+                <form class='w3-form w3-border w3-round' action='add_student.php' method='POST'>
                   <input type='hidden' name='student_number' value='{$student_number}'>
                   <div class='form-group'>
                       <label class='w3-validate' for='first_name'> First Name: </label>
@@ -72,9 +73,13 @@
                   <input type='hidden' name='full_name'>
 
                   <div class='form-group'>
-                    <label for='date_of_birth'>Date of Birth: </label>
-                    <br />", get_date_form('birth_year','birth_month', 'birth_day', $birth_date ),
-                    "<input type='hidden' name='date_of_birth'>
+                    <label for='date_of_birth'>Date of Birth: </label> <br />
+                    <div class='input-group date' id='form_datetime'>
+                      <input class='form-control' type='text' name='date_of_birth' value='{$date_of_birth}' readonly>
+                      <span class='input-group-addon'>
+                          <span class='glyphicon glyphicon-calendar'></span>
+                      </span>
+                    </div>
                   </div>
 
                   <div class='form-group'>";
@@ -100,8 +105,8 @@
                     <br />", select_data($house_array, 'house_name', $house_name, 30), "
                   </div>
                   <div class='btn-group'>
-                      <input class='btn btn-primary' type='submit' name='Update' value='Update'>
-                      <input class='btn btn-primary' type='submit' name='Delete' value='Delete'>
+                      <input class='btn btn-primary' type='submit' name='add_student' value='Update Student'>
+                      <input class='btn btn-primary' type='submit' name='add_student' value='Delete Student'>
                       <a class='btn btn-primary' href='display_students.php'>Back</a>
                   </div>
               </div>
@@ -113,5 +118,6 @@
         </div>";
 
        $db->close_connection($con);
-        create_footer();
+
+       create_footer();
 ?>

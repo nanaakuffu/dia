@@ -1,5 +1,5 @@
 <?php
-/* Script name: change_password.php */
+/* Script name: student_page */
 session_start();
 
 require_once "db_functions.php";
@@ -70,6 +70,8 @@ if(!isset($_POST['submit'])) {
           $pass_data = [];
           $pass_data['user_name'] = $_POST['user_name'];
           $pass_data['user_password'] = encrypt_data($_POST['new_password']);
+
+          $pass_data = secure_data_array($pass_data);
 
           $change_data = $db->update_data($con, $pass_data, 'users', 'user_name', $pass_data['user_name']);
           if ($change_data) {

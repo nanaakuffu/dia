@@ -20,26 +20,29 @@
     if (isset($_POST['submit'])) {
       $records = $db->search_data($con, "users", $fields, "last_name", $_POST['search'], 'last_name');
     } else {
-      $records = $db->display_data($con, "users", $fields, "last_name");
+      $records = $db->display_data($con, "users", $fields, "last_name", "*");
     }
 
     echo "<div class='container'>",
             search_bar('display_users.php'),
            "<br /><div class='table-responsive'>
-              <table class='w3-table w3-striped w3-hoverable' align='center' cellspacing='5'>
-                <tr class='w3-green'>";
-                  $headers = "";
-                  foreach ($fields as $key => $value) {
-                    if ($value != 'user_name') {
-                      if ($value == 'status') {
-                        $headers .= "<th> Online </th>";
-                      } else {
-                        $headers .= "<th>".get_column_name($value)."</th>";
+              <table id='user_table' class='w3-table w3-striped w3-hoverable' align='center' cellspacing='5'>
+                <thead>
+                  <tr class='w3-green'>";
+                    $headers = "";
+                    foreach ($fields as $key => $value) {
+                      if ($value != 'user_name') {
+                        if ($value == 'status') {
+                          $headers .= "<th> Online </th>";
+                        } else {
+                          $headers .= "<th>".get_column_name($value)."</th>";
+                        }
                       }
                     }
-                  }
-                  echo $headers .= "<th> Status </th>";
-          echo "</tr>";
+                    echo $headers .= "<th> Status </th>";
+            echo "</tr>
+                </thead>
+                <tbody>";
 
             if (sizeof($records) != 0) {
               foreach ($records as $key => $record) {
@@ -64,7 +67,7 @@
               }
             }
 
-    echo "</table>
+    echo "</tbody></table>
         </div>
       </div>";
 

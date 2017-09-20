@@ -9,6 +9,9 @@
   else                                  #9
   {
     //var_dump($_FILES);
+    if ($_FILES['pix']['size'] > $_POST['MAX_FILE_SIZE']) {
+      echo "File is too big.";
+    }
     if($_FILES['pix']['tmp_name'] == "none")        #11
     {
       echo "<b>File did not successfully upload. Check the
@@ -25,7 +28,7 @@
     }
     else                                            #23
     {
-      $destination = './site_pics'."/".$_FILES['pix']['name'];
+      $destination = 'site_pics/'.$_FILES['pix']['name'];
       $temp_file = $_FILES['pix']['tmp_name'];
       move_uploaded_file($temp_file,$destination);
       echo "<p><b>The file has successfully uploaded:</b>
