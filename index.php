@@ -26,6 +26,7 @@
             encryption("password", "Nana Baah Akuffu"), "<br>",
             encryption("password", "Danquah"), "<br>",
             substr("Nana Baah", 1, 1),
+            decrypt_data("70131113011351132421213882"),
           "</div>
           <div class='col-sm-6'>
             <div class='panel panel-default'>

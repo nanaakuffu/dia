@@ -8,7 +8,7 @@
     if (isset($_POST['login'])) {
         $error = "";
         foreach ($_POST as $key => $value) {
-            /* Check for wrong data */
+            /* Check for wrong input data */
             $value = trim($value);
             if (preg_match("/first/i", $key)) {
               if (!ereg("^[A-Za-z].*", $value)) {

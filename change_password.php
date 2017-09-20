@@ -1,5 +1,5 @@
 <?php
-/* Script name: student_page */
+/* Script name: change_password.php */
 session_start();
 
 require_once "db_functions.php";
