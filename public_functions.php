@@ -31,16 +31,17 @@
               <link href='static/font-awesome/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
               <link href='static/css/fonts.css' type='text/css' rel='stylesheet'>
               <style>
+                html, body {
+                  font-family: Roboto, Bitter, 'Open Sans', Arvo, 'Sans Serif', Arial;
+                }
+
                 a:hover, a:visited, a:link, a:active
                 {
                   text-decoration: none;
                 }
-                html, body {
-                  font-family: Roboto, 'Open Sans', Arvo, Bitter, 'Sans Serif', Arial;
-                }
 
                 .bitterlabel {
-                  font-family: Bitter;
+                  font-family: Bitter, Roboto;
                 }
               </style>
             </head>

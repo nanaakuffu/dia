@@ -68,8 +68,8 @@
                 }
 
         echo "  <div class='form-group'>
-                    <label class='bitterlabel' for='first_name'> First Name: </label>
-                    <input class='form-control' type='text' name='first_name' value='{$first_name}'
+                  <label class='bitterlabel' for='first_name'> First Name: </label>
+                  <input class='form-control' type='text' name='first_name' value='{$first_name}'
                          id='first_name' placeholder='Enter First Name' required>
                 </div>
 
