@@ -34,8 +34,10 @@
          /* Checking for invalid and empty data */
          $value = trim($value);
          if ( preg_match("/name/i", $field)) {
-           if (!preg_match("/^[a-zA-Z ]*$/",$value)) {
-             $errors[] = "$value is not a valid name.";
+           if ($field == 'first_name' or $field == 'middle_name' or $field == 'last_name'){
+             if (!preg_match("/^[a-zA-Z ]*$/", $value)) {
+               $errors[] = "$value is not a valid name.";
+             }
            }
          }
 
