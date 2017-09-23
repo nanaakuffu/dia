@@ -287,7 +287,7 @@
       $data_value = trim($data_value);
       $data_value = stripslashes($data_value);
       $data_value = strip_tags($data_value);
-      $secrued_value = htmlspecialchars($data_value);
+      $secured_value = htmlspecialchars($data_value);
 
       return $secured_value;
     }

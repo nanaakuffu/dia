@@ -121,6 +121,8 @@
 
             $_POST = secure_data_array($_POST);
 
+            // echo "<pre>", var_dump($_POST), "</pre>";
+
             // Actually update the edited data
             $update_data = $db->update_data($con, $_POST, "students", "student_number", $_POST['student_number']);
             if ($update_data) {

@@ -258,7 +258,7 @@
       }
     }
 
-    function get_last_logged_in($connection, $user_name)
+    function get_last_logged_id($connection, $user_name)
     {
       $sql = "SELECT log_id, login_date, login_time FROM login_details WHERE user_name="."'".$user_name."' ORDER BY login_date DESC, login_time DESC";
 

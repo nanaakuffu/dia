@@ -24,18 +24,19 @@
               // Set the date and time you are doing this
               $today_date = date('y-m-d');
               $today_time = date('h:i:s');
-              $log_id = $db->get_last_logged_in($con, $_POST['user_name']);
+              $log_id = $db->get_last_logged_id($con, $_POST['user_name']);
 
               $user_sql = "UPDATE users SET status='0' WHERE user_name ="."'".$_POST['user_name']."'";
-              $result = mysqli_query($con, $user_sql) or die("Couldn't execute query.");
+              $result = mysqli_query($con, $user_sql) or die("Could not reset the login for ".$_POST['user_name'].".");
               if ($result) {
                 $log_sql = "UPDATE login_details SET logout_date='$today_date', logout_time='$today_time' WHERE log_id='$log_id'";
-                $log_result = mysqli_query($con, $log_sql) or die("Couldn't execute query.");
+                // echo $log_sql;
+                $log_result = mysqli_query($con, $log_sql) or die("Could not update current user's logout details.");
               }
 
               $db->close_connection($con);
               $message = "<i class='fa fa-check-square-o'></i> Your answer has been verified. Please
-                        click <a href='login_page.php'> HERE </a> to login.";
+                        click <a class='bitterlabel' href='login_page.php'> HERE </a> to login.";
               $_SESSION['message'] = $message;
               include_once 'reset_login.php';
               exit();
