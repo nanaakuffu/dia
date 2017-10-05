@@ -281,7 +281,7 @@
               </label>
             </div>";
     }
-
+    /* Make the value of a data secured before sending */
     function secure_data_value($data_value)
     {
       $data_value = trim($data_value);
@@ -292,10 +292,11 @@
       return $secured_value;
     }
 
+    /* Make a data array secured */
     function secure_data_array($data_array)
     {
       $secured_array = array();
-      if (!is_array($data_array)) { // Data is not an array, hemce make it one.
+      if (!is_array($data_array)) { // Data is not an array, hence make it one.
         $secured_array[] = secure_data_value($data_array);
       } else { // Data is an array, hence valudate each element of the array.
         foreach ($data_array as $key => $value) {
