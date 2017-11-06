@@ -107,6 +107,9 @@
                             if ( $_SESSION['is_admin'] == 1 or $_SESSION['is_head'] == 1 or $_SESSION['is_form_teacher'] == 1 ) {
                               echo "<li><a href='view_class_scores.php'><i class='fa fa-fw fa-navicon'></i> Student Score View </a></li>";
                             }
+                            if ( $_SESSION['is_admin'] == 1 or $_SESSION['is_head'] == 1 or $_SESSION['is_form_teacher'] == 1 ) {
+                              echo "<li><a href='reports.php'><i class='fa fa-fw fa-navicon'></i> Generate Report </a></li>";
+                            }
                   echo "</ul>
                     </li>
                     <li class='dropdown'>
