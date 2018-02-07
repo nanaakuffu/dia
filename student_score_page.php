@@ -122,7 +122,7 @@
                   <div class='form-group'><label class='w3-validate' for='totalscore'>Total Score : </label><br />
                         <input class='form-control' type='text' id='totalscore'
                         onfocus='getscoreandgrade(totalscore, classscore, examscore, grades, remarks)' name='total_score'
-                        value='{$total}'></div>
+                        value='{$total}' readonly></div>
                   <div class='form-group'><label class='w3-validate' for='grade'>Grade : </label><br />
                       <input class='form-control' type='text' id='grades' name='grade' value='{$grade}' readonly></div>
                   <div class='form-group'><label class='w3-validate' for='remark'>Remark : </label><br />
